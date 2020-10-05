@@ -13,7 +13,11 @@ import logo from '../../assets/img/logo.jpg';
 
 const WelcomeScreen = ({ navigation }) => (
   <ImageBackground source={bgImg} style={styles.container}>
-    <StatusBar hidden={true} />
+    <StatusBar
+      hidden={false}
+      translucent={true}
+      backgroundColor="rgba(0, 0, 0, 0)"
+    />
     <View style={styles.logoBox}>
       <Image source={logo} style={styles.logoImg} />
       <Text style={styles.logoText}>干得快洗衣店</Text>
