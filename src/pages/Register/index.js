@@ -1,17 +1,72 @@
 import * as React from 'react';
-import { View, Text, Button } from 'react-native';
+import {
+  View,
+  Text,
+  StatusBar,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
+import styles from './styles';
 
-function LoginScreen({ navigation }) {
+const RegisterScreen = ({ navigation }) => {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Details Screen</Text>
-      <Button
-        title="Go to Details... again"
-        onPress={() => navigation.push('Details')}
+    <View style={styles.container}>
+      <StatusBar
+        hidden={false}
+        backgroundColor="#fff"
+        barStyle="dark-content"
       />
-      <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
-      <Button title="Go back" onPress={() => navigation.goBack()} />
+      <Text style={styles.title}>注册新账号</Text>
+      <View style={[styles.rowItem, styles.itemborderBottom]}>
+        <View style={styles.itemLeft}>
+          <Text style={styles.itemLeftLabel}>昵称</Text>
+        </View>
+        <View style={styles.itemRight}>
+          <TextInput
+            maxLength={15}
+            placeholder="例如：玛玛哈哈"
+            style={styles.itemRightInput}
+          />
+        </View>
+      </View>
+      <View style={styles.rowItem}>
+        <View style={styles.itemLeft}>
+          <Text style={styles.itemLeftLabel}>国家/地区</Text>
+        </View>
+        <View style={styles.itemRight}>
+          <Text style={styles.itemRightLabel}>中国大陆（+86）</Text>
+        </View>
+      </View>
+      <View style={[styles.rowItem, styles.itemborderBottom]}>
+        <View style={styles.itemLeft}>
+          <Text style={styles.itemLeftLabel}>手机号</Text>
+        </View>
+        <View style={styles.itemRight}>
+          <TextInput
+            keyboardType="numeric"
+            clearButtonMode="while-editing"
+            placeholder="请填写手机号"
+            style={styles.itemRightInput}
+          />
+        </View>
+      </View>
+      <View style={[styles.rowItem, styles.itemborderBottom]}>
+        <View style={styles.itemLeft}>
+          <Text style={styles.itemLeftLabel}>密码</Text>
+        </View>
+        <View style={styles.itemRight}>
+          <TextInput
+            secureTextEntry={true}
+            placeholder="填写密码"
+            style={styles.itemRightInput}
+          />
+        </View>
+      </View>
+      <TouchableOpacity activeOpacity={0.6} style={styles.registerBtn}>
+        <Text style={styles.registerBtnText}>注册</Text>
+      </TouchableOpacity>
     </View>
   );
-}
-export default LoginScreen;
+};
+
+export default RegisterScreen;

@@ -21,26 +21,26 @@ function App() {
         <Stack.Screen
           name="Login"
           component={Login}
-          options={{
-            title: 'Login',
-            headerStyle: {
-              backgroundColor: '#f4511e',
-            },
-            headerTintColor: '#fff',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            },
-          }}
+          // options={{
+          //   title: 'Login',
+          //   headerStyle: {
+          //     backgroundColor: '#f4511e',
+          //   },
+          //   headerTintColor: '#fff',
+          //   headerTitleStyle: {
+          //     fontWeight: 'bold',
+          //   },
+          // }}
         />
         <Stack.Screen
           name="Register"
           component={Register}
           options={{
-            title: 'Register',
+            title: '',
             headerStyle: {
-              backgroundColor: '#f4511e',
+              backgroundColor: '#fff',
             },
-            headerTintColor: '#fff',
+            headerTintColor: '#000',
             headerTitleStyle: {
               fontWeight: 'bold',
             },
