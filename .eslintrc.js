@@ -5,7 +5,7 @@
 module.exports = {
   extends: ['eslint-config-airbnb', 'plugin:prettier/recommended'],
   parser: 'babel-eslint',
-  plugins: ['react', 'react-native', 'prettier'],
+  plugins: ['react', 'react-native', 'prettier', 'react-hooks'],
   env: {
     node: true,
     es6: true,
@@ -40,6 +40,8 @@ module.exports = {
     },
   },
   rules: {
+    'react-hooks/rules-of-hooks': 'error', // 检查 Hook 的规则
+    'react-hooks/exhaustive-deps': 'warn', // 检查 effect 的依赖
     'prettier/prettier': [1],
     'arrow-parens': ['error', 'as-needed'],
     'arrow-body-style': 0,
@@ -218,7 +220,7 @@ module.exports = {
     ],
     'react/no-multi-comp': 0,
     'react/no-unknown-property': 2,
-    'react/prop-types': 2,
+    'react/prop-types': 0,
     'react/react-in-jsx-scope': 1,
     'react/self-closing-comp': 2,
     'react/jsx-wrap-multilines': [
