@@ -1,4 +1,5 @@
 import { Dimensions, Platform, StatusBar } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 
 // 屏幕宽高
 const { width, height } = Dimensions.get('window');
@@ -18,6 +19,33 @@ export const pixelX = w => Math.round(w * wRatio);
 export const pixelY = h => Math.round(h * hRatio);
 // 状态栏高度
 export const statusBarHeight = isIos ? (height >= 812 ? 44 : 20) : statusHeight;
+// 设置本地存储
+export const setStorage = async ({ key, value }) => {
+  try {
+    await AsyncStorage.setItem(key, JSON.stringify(value));
+    return true;
+  } catch (e) {
+    console.log(e);
+  }
+};
+// 获取本地存储数据
+export const getStorage = async key => {
+  try {
+    const value = await AsyncStorage.getItem(key);
+    return value != null ? JSON.parse(value) : null;
+  } catch (e) {
+    console.log(e);
+  }
+};
+// 删除本地存储数据
+export const removeStorage = async key => {
+  try {
+    await AsyncStorage.removeItem(key);
+    return true;
+  } catch (e) {
+    console.log(e);
+  }
+};
 
 export default {
   windowW: width,

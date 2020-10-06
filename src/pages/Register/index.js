@@ -22,7 +22,7 @@ const Screen = props => {
         backgroundColor="#fff"
         barStyle="dark-content"
       />
-      <Text style={styles.title}>注册新账号</Text>
+      <Text style={styles.title}>创建新账号</Text>
       <View style={[styles.rowItem, styles.itemborderBottom]}>
         <View style={styles.itemLeft}>
           <Text style={styles.itemLeftLabel}>昵称</Text>
@@ -100,7 +100,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onSignIn: params => {
-      // 注册
       const action = signIn(params);
       dispatch(action);
     },

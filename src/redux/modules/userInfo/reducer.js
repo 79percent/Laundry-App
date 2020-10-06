@@ -1,6 +1,6 @@
 import { actionTypes } from './action';
 
-const { SIGN_IN, LOGIN_IN, LOGIN_OUT } = actionTypes;
+const { SAVE_USER_INFO } = actionTypes;
 
 const defaultStateUserInfo = {
   isLoggedIn: false,
@@ -12,22 +12,14 @@ const defaultStateUserInfo = {
 const userInfo = (state = defaultStateUserInfo, action) => {
   const { type, payload } = action;
   switch (type) {
-    case SIGN_IN:
+    case SAVE_USER_INFO:
       return {
+        ...state,
         ...payload,
-        isLoggedIn: true,
-      };
-    case LOGIN_IN:
-      return {
-        ...payload,
-        isLoggedIn: true,
-      };
-    case LOGIN_OUT:
-      return {
-        ...defaultStateUserInfo,
       };
     default:
       return state;
   }
 };
+
 export default userInfo;
