@@ -76,6 +76,7 @@ const App = props => {
       })
       .catch(err => {
         console.log(err);
+        SplashScreen.hide();
       });
   }, []);
   return (
