@@ -8,7 +8,7 @@ import { saveUserInfo } from './src/redux/modules/userInfo/action';
 import WelcomeScreen from './src/pages/Welcome';
 import RegisterScreen from './src/pages/Register';
 import LoginScreen from './src/pages/Login';
-import HomeScreen from './src/pages/Home';
+import TabNavigator from './src/pages/TabNavigator';
 
 const Stack = createStackNavigator();
 
@@ -51,9 +51,9 @@ const authScreens = {
 
 // 已登录时的页面
 const userScreens = {
-  Home: {
+  TabNavigator: {
     // 主页
-    component: HomeScreen,
+    component: TabNavigator,
     options: { headerShown: false },
   },
 };
