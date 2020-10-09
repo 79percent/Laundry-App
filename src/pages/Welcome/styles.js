@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   },
   logoText: {
     color: '#fff',
-    fontSize: pixelX(18),
+    fontSize: pixelX(24),
   },
   btnsBox: {
     flex: 1,
@@ -29,8 +29,8 @@ const styles = StyleSheet.create({
   },
   btn: {
     width: pixelX(240),
-    height: pixelY(40),
-    borderRadius: pixelY(20),
+    height: pixelY(50),
+    borderRadius: pixelY(25),
     justifyContent: 'center',
     alignItems: 'center',
   },

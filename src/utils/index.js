@@ -3,6 +3,8 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 // 屏幕宽高
 const { width, height } = Dimensions.get('window');
+export const windowW = width;
+export const windowH = height;
 // 状态栏高度
 const statusHeight = StatusBar.currentHeight || 0;
 // 是否为Ios
@@ -45,14 +47,4 @@ export const removeStorage = async key => {
   } catch (e) {
     console.log(e);
   }
-};
-
-export default {
-  windowW: width,
-  windowH: height,
-  isIos,
-  isIphoneX,
-  pixelX,
-  pixelY,
-  statusBarHeight,
 };
