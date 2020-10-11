@@ -7,6 +7,7 @@ const imgH = 1600;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#fff',
   },
   block1: {
     height: pixelY(45),
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   block3: {
-    height: pixelY(40),
+    height: pixelY(50),
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -43,7 +44,6 @@ const styles = StyleSheet.create({
     color: '#6F6F6F',
   },
   block4: {
-    backgroundColor: '#fff',
     width: '100%',
     height: pixelY(120),
     flexDirection: 'row',
@@ -64,6 +64,19 @@ const styles = StyleSheet.create({
   block4ItemImg: {
     width: pixelY(80),
     height: pixelY(80),
+  },
+  block5: {
+    width: '100%',
+    height: pixelY(65),
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    backgroundColor: '#ECECEC',
+    marginTop: pixelY(20),
+  },
+  block5ItemLabel: {
+    fontSize: pixelX(16),
+    color: '#333',
   },
 });
 

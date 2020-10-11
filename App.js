@@ -71,12 +71,18 @@ const App = props => {
             isLoggedIn: true,
           });
           dispatch(action);
+          setTimeout(() => {
+            SplashScreen.hide();
+          }, 500);
+        } else {
+          SplashScreen.hide();
         }
-        SplashScreen.hide();
       })
       .catch(err => {
         console.log(err);
-        SplashScreen.hide();
+        setTimeout(() => {
+          SplashScreen.hide();
+        }, 500);
       });
   }, []);
   return (

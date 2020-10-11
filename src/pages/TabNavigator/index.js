@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import { pixelY } from '../../utils';
 import HomeScreen from '../Home';
 import OrderScreen from '../Order';
 import PersonalCenter from '../PersonalCenter';
@@ -16,30 +16,38 @@ export default function TabNavigator() {
           let iconName;
           switch (route.name) {
             case 'Home':
-              iconName = 'home-outline';
-              return <Ionicons name={iconName} size={size} color={color} />;
+              iconName = 'home';
+              break;
             case 'Order':
-              iconName = 'list-outline';
-              return <Ionicons name={iconName} size={size} color={color} />;
+              iconName = 'bars';
+              break;
             case 'PersonalCenter':
-              iconName = 'user-circle-o';
-              return <FontAwesome name={iconName} size={size} color={color} />;
+              iconName = 'user';
+              break;
             default:
               iconName = 'question';
-              return <Ionicons name={iconName} size={size} color={color} />;
+              break;
           }
+          return <AntDesign name={iconName} size={pixelY(26)} color={color} />;
         },
       })}
       tabBarOptions={{
         activeTintColor: '#61B2FC',
         inactiveTintColor: '#5D5858',
+        style: {
+          height: pixelY(65),
+        },
+        tabStyle: {},
+        labelStyle: {
+          fontSize: pixelY(14),
+        },
       }}
     >
       <Tab.Screen
         name="Home"
         component={HomeScreen}
         options={{
-          title: '主页',
+          title: '首页',
         }}
       />
       <Tab.Screen

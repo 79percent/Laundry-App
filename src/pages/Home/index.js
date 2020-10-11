@@ -10,10 +10,13 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import Geolocation from '@react-native-community/geolocation';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Swiper from 'react-native-swiper';
 import styles from './styles';
 import { loginOut } from '../../redux/modules/userInfo/action';
 import { queryLoaction } from '../../services';
+import { pixelY } from '../../utils';
 import banner1 from '../../assets/img/banner1.jpg';
 import banner2 from '../../assets/img/banner2.jpg';
 import banner3 from '../../assets/img/banner3.jpg';
@@ -58,7 +61,7 @@ const Screen = ({ navigation, onLoginOut }) => {
       img: banner3,
     },
   ];
-  const serviceArr = [
+  const typesArr = [
     {
       id: 'xiyi',
       label: '洗衣',
@@ -80,8 +83,29 @@ const Screen = ({ navigation, onLoginOut }) => {
       img: chuanglian,
     },
   ];
+  const serviceArr = [
+    {
+      id: 'fuwujieshao',
+      label: '服务介绍',
+      iconName: 'ios-albums',
+      iconType: 'Ionicons',
+    },
+    {
+      id: 'fuwufanwei',
+      label: '服务范围',
+      iconName: 'globe',
+      iconType: 'FontAwesome',
+    },
+    {
+      id: 'jiagebiao',
+      label: '价格表',
+      iconName: 'ios-menu-outline',
+      iconType: 'Ionicons',
+    },
+  ];
   return (
     <View style={styles.container}>
+      <StatusBar backgroundColor="#fff" barStyle="dark-content" />
       {/* 所在城市 */}
       <View style={styles.block1}>
         <Text style={styles.locationText}>{location || '选择城市'}</Text>
@@ -99,15 +123,44 @@ const Screen = ({ navigation, onLoginOut }) => {
         </View>
         {/* 专业清洗 */}
         <View style={styles.block3}>
-          <Text style={styles.block3Text}>- 专业清洗 -</Text>
+          <Text style={styles.block3Text}>— 专业清洗 —</Text>
         </View>
         {/* 洗衣、洗鞋、洗家纺、窗帘清洗 */}
         <View style={styles.block4}>
-          {serviceArr.map(item => (
-            <View key={item.id} style={styles.block4Item}>
+          {typesArr.map(item => (
+            <TouchableOpacity
+              key={item.id}
+              style={styles.block4Item}
+              activeOpacity={0.6}
+            >
               <Text style={styles.block4ItemLabel}>{item.label}</Text>
               <Image style={styles.block4ItemImg} source={item.img} />
-            </View>
+            </TouchableOpacity>
+          ))}
+        </View>
+        {/* 服务介绍、服务范围、价目中心 */}
+        <View style={styles.block5}>
+          {serviceArr.map(item => (
+            <TouchableOpacity
+              key={item.id}
+              style={styles.block4Item}
+              activeOpacity={0.6}
+            >
+              {item.iconType === 'Ionicons' ? (
+                <Ionicons
+                  name={item.iconName}
+                  size={pixelY(26)}
+                  color="#696f7a"
+                />
+              ) : (
+                <FontAwesome
+                  name={item.iconName}
+                  size={pixelY(26)}
+                  color="#696f7a"
+                />
+              )}
+              <Text style={styles.block5ItemLabel}>{item.label}</Text>
+            </TouchableOpacity>
           ))}
         </View>
       </ScrollView>
