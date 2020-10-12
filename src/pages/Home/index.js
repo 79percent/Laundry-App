@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   ScrollView,
   Image,
+  ImageBackground,
 } from 'react-native';
 import { connect } from 'react-redux';
 import Geolocation from '@react-native-community/geolocation';
@@ -16,7 +17,7 @@ import Swiper from 'react-native-swiper';
 import styles from './styles';
 import { loginOut } from '../../redux/modules/userInfo/action';
 import { queryLoaction } from '../../services';
-import { pixelY } from '../../utils';
+import { pixelY, pixelX } from '../../utils';
 import banner1 from '../../assets/img/banner1.jpg';
 import banner2 from '../../assets/img/banner2.jpg';
 import banner3 from '../../assets/img/banner3.jpg';
@@ -24,6 +25,7 @@ import xiyi from '../../assets/img/xiyi.jpg';
 import xixie from '../../assets/img/xixie.jpg';
 import xijiafang from '../../assets/img/xijiafang.jpg';
 import chuanglian from '../../assets/img/chuanglian.jpg';
+import footerImg from '../../assets/img/footerImg.jpg';
 
 const Screen = ({ navigation, onLoginOut }) => {
   const [location, setLocation] = useState(''); // 存储地理位置
@@ -108,12 +110,15 @@ const Screen = ({ navigation, onLoginOut }) => {
       <StatusBar backgroundColor="#fff" barStyle="dark-content" />
       {/* 所在城市 */}
       <View style={styles.block1}>
-        <Text style={styles.locationText}>{location || '选择城市'}</Text>
+        <TouchableOpacity style={styles.block1Touch}>
+          <Text style={styles.locationText}>{location || '选择城市'}</Text>
+          <FontAwesome name="angle-down" size={pixelY(26)} color="#696f7a" />
+        </TouchableOpacity>
       </View>
       <ScrollView>
         {/* 轮播图 */}
         <View style={styles.block2}>
-          <Swiper>
+          <Swiper autoplay={true}>
             {bannerArr.map(item => (
               <View style={styles.slide} key={item.id}>
                 <Image source={item.img} style={styles.banner} />
@@ -163,6 +168,101 @@ const Screen = ({ navigation, onLoginOut }) => {
             </TouchableOpacity>
           ))}
         </View>
+        <ImageBackground source={footerImg} style={styles.block6}>
+          <View style={styles.block6SwiperBox}>
+            <Swiper
+              horizontal={false}
+              autoplay={true}
+              autoplayTimeout={4}
+              showsPagination={false}
+            >
+              <View style={styles.block6SwiperBoxItem}>
+                <View style={styles.block6SwiperBoxItemTop}>
+                  <Text style={styles.block6SwiperBoxItemTopText}>
+                    北京市用户 198****3829
+                  </Text>
+                </View>
+                <View style={styles.block6SwiperBoxItemBottom}>
+                  <View style={styles.block6SwiperBoxItemBottomLeft}>
+                    <FontAwesome
+                      name="quote-left"
+                      size={pixelX(16)}
+                      color="#95989B"
+                    />
+                  </View>
+                  <View style={styles.block6SwiperBoxItemBottomCenter}>
+                    <Text style={styles.block6SwiperBoxItemBottomText}>
+                      衣服洗得非常干净！
+                    </Text>
+                  </View>
+                  <View style={styles.block6SwiperBoxItemBottomRight}>
+                    <FontAwesome
+                      name="quote-right"
+                      size={pixelX(18)}
+                      color="#95989B"
+                    />
+                  </View>
+                </View>
+              </View>
+              <View style={styles.block6SwiperBoxItem}>
+                <View style={styles.block6SwiperBoxItemTop}>
+                  <Text style={styles.block6SwiperBoxItemTopText}>
+                    上海市用户 198****3829
+                  </Text>
+                </View>
+                <View style={styles.block6SwiperBoxItemBottom}>
+                  <View style={styles.block6SwiperBoxItemBottomLeft}>
+                    <FontAwesome
+                      name="quote-left"
+                      size={pixelX(16)}
+                      color="#95989B"
+                    />
+                  </View>
+                  <View style={styles.block6SwiperBoxItemBottomCenter}>
+                    <Text style={styles.block6SwiperBoxItemBottomText}>
+                      衣服洗得非常干净！
+                    </Text>
+                  </View>
+                  <View style={styles.block6SwiperBoxItemBottomRight}>
+                    <FontAwesome
+                      name="quote-right"
+                      size={pixelX(18)}
+                      color="#95989B"
+                    />
+                  </View>
+                </View>
+              </View>
+              <View style={styles.block6SwiperBoxItem}>
+                <View style={styles.block6SwiperBoxItemTop}>
+                  <Text style={styles.block6SwiperBoxItemTopText}>
+                    杭州市用户 198****3829
+                  </Text>
+                </View>
+                <View style={styles.block6SwiperBoxItemBottom}>
+                  <View style={styles.block6SwiperBoxItemBottomLeft}>
+                    <FontAwesome
+                      name="quote-left"
+                      size={pixelX(16)}
+                      color="#95989B"
+                    />
+                  </View>
+                  <View style={styles.block6SwiperBoxItemBottomCenter}>
+                    <Text style={styles.block6SwiperBoxItemBottomText}>
+                      衣服洗得非常干净！
+                    </Text>
+                  </View>
+                  <View style={styles.block6SwiperBoxItemBottomRight}>
+                    <FontAwesome
+                      name="quote-right"
+                      size={pixelX(18)}
+                      color="#95989B"
+                    />
+                  </View>
+                </View>
+              </View>
+            </Swiper>
+          </View>
+        </ImageBackground>
       </ScrollView>
     </View>
   );

@@ -4,6 +4,9 @@ import { pixelX, pixelY, windowW } from '../../utils';
 const imgW = 2560;
 const imgH = 1600;
 
+const footerImgW = 1000;
+const footerImgH = 283;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -12,6 +15,11 @@ const styles = StyleSheet.create({
   block1: {
     height: pixelY(45),
     backgroundColor: '#fff',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  block1Touch: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
@@ -67,7 +75,7 @@ const styles = StyleSheet.create({
   },
   block5: {
     width: '100%',
-    height: pixelY(65),
+    height: pixelY(70),
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
@@ -77,6 +85,61 @@ const styles = StyleSheet.create({
   block5ItemLabel: {
     fontSize: pixelX(16),
     color: '#333',
+  },
+  block6: {
+    width: windowW,
+    height: (windowW * footerImgH) / footerImgW,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  block6SwiperBox: {
+    width: pixelX(300),
+    height: pixelY(60),
+    backgroundColor: '#fff',
+    elevation: 4,
+  },
+  block6SwiperBoxItem: {
+    flex: 1,
+  },
+  block6SwiperBoxItemTop: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  block6SwiperBoxItemTopText: {
+    color: '#696f7a',
+    fontSize: pixelX(12),
+  },
+  block6SwiperBoxItemBottom: {
+    flex: 3,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  block6SwiperBoxItemBottomLeft: {
+    width: pixelX(40),
+    height: '100%',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+  },
+  block6SwiperBoxItemBottomCenter: {
+    flex: 1,
+    height: '100%',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  block6SwiperBoxItemBottomRight: {
+    width: pixelX(40),
+    height: '100%',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+  },
+  block6SwiperBoxItemBottomText: {
+    color: '#696f7a',
+    fontSize: pixelX(16),
   },
 });
 
