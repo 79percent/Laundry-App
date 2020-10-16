@@ -48,3 +48,14 @@ export const removeStorage = async key => {
     console.log(e);
   }
 };
+
+// 延迟
+export const wait = (timeout, isSuccess = true) => {
+  return new Promise((resolve, reject) => {
+    if (isSuccess) {
+      setTimeout(resolve, timeout);
+    } else {
+      setTimeout(reject, timeout);
+    }
+  });
+};

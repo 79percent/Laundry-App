@@ -21,6 +21,7 @@
     "moment": "^2.29.0",
     "react": "16.13.1",
     "react-native": "0.63.3",
+    "react-native-easy-toast": "^1.2.0",
     "react-native-geolocation-service": "^5.0.0",
     "react-native-gesture-handler": "^1.8.0",
     "react-native-location": "^2.5.0",

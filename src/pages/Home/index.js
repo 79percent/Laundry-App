@@ -18,13 +18,7 @@ import styles from './styles';
 import { loginOut } from '../../redux/modules/userInfo/action';
 import { queryLoaction } from '../../services';
 import { pixelY, pixelX } from '../../utils';
-import banner1 from '../../assets/img/banner1.jpg';
-import banner2 from '../../assets/img/banner2.jpg';
-import banner3 from '../../assets/img/banner3.jpg';
-import xiyi from '../../assets/img/xiyi.jpg';
-import xixie from '../../assets/img/xixie.jpg';
-import xijiafang from '../../assets/img/xijiafang.jpg';
-import chuanglian from '../../assets/img/chuanglian.jpg';
+import { bannerArr, typesArr, serviceArr, commentsList } from './utils';
 import footerImg from '../../assets/img/footerImg.jpg';
 
 const Screen = ({ navigation, onLoginOut }) => {
@@ -49,62 +43,6 @@ const Screen = ({ navigation, onLoginOut }) => {
       maximumAge: 1000 * 60 * 10,
     }
   );
-  const bannerArr = [
-    {
-      id: 'banner1',
-      img: banner1,
-    },
-    {
-      id: 'banner2',
-      img: banner2,
-    },
-    {
-      id: 'banner3',
-      img: banner3,
-    },
-  ];
-  const typesArr = [
-    {
-      id: 'xiyi',
-      label: '洗衣',
-      img: xiyi,
-    },
-    {
-      id: 'xixie',
-      label: '洗鞋',
-      img: xixie,
-    },
-    {
-      id: 'xijiafang',
-      label: '洗家纺',
-      img: xijiafang,
-    },
-    {
-      id: 'chuanglian',
-      label: '窗帘清洗',
-      img: chuanglian,
-    },
-  ];
-  const serviceArr = [
-    {
-      id: 'fuwujieshao',
-      label: '服务介绍',
-      iconName: 'ios-albums',
-      iconType: 'Ionicons',
-    },
-    {
-      id: 'fuwufanwei',
-      label: '服务范围',
-      iconName: 'globe',
-      iconType: 'FontAwesome',
-    },
-    {
-      id: 'jiagebiao',
-      label: '价格表',
-      iconName: 'ios-menu-outline',
-      iconType: 'Ionicons',
-    },
-  ];
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#fff" barStyle="dark-content" />
@@ -168,6 +106,7 @@ const Screen = ({ navigation, onLoginOut }) => {
             </TouchableOpacity>
           ))}
         </View>
+        {/* 评论 */}
         <ImageBackground source={footerImg} style={styles.block6}>
           <View style={styles.block6SwiperBox}>
             <Swiper
@@ -176,90 +115,36 @@ const Screen = ({ navigation, onLoginOut }) => {
               autoplayTimeout={4}
               showsPagination={false}
             >
-              <View style={styles.block6SwiperBoxItem}>
-                <View style={styles.block6SwiperBoxItemTop}>
-                  <Text style={styles.block6SwiperBoxItemTopText}>
-                    北京市用户 198****3829
-                  </Text>
-                </View>
-                <View style={styles.block6SwiperBoxItemBottom}>
-                  <View style={styles.block6SwiperBoxItemBottomLeft}>
-                    <FontAwesome
-                      name="quote-left"
-                      size={pixelX(16)}
-                      color="#95989B"
-                    />
-                  </View>
-                  <View style={styles.block6SwiperBoxItemBottomCenter}>
-                    <Text style={styles.block6SwiperBoxItemBottomText}>
-                      衣服洗得非常干净！
+              {commentsList.map(item => (
+                <View style={styles.block6SwiperBoxItem} key={item.id}>
+                  <View style={styles.block6SwiperBoxItemTop}>
+                    <Text style={styles.block6SwiperBoxItemTopText}>
+                      {`${item.city} ${item.phone}`}
                     </Text>
                   </View>
-                  <View style={styles.block6SwiperBoxItemBottomRight}>
-                    <FontAwesome
-                      name="quote-right"
-                      size={pixelX(18)}
-                      color="#95989B"
-                    />
+                  <View style={styles.block6SwiperBoxItemBottom}>
+                    <View style={styles.block6SwiperBoxItemBottomLeft}>
+                      <FontAwesome
+                        name="quote-left"
+                        size={pixelX(16)}
+                        color="#95989B"
+                      />
+                    </View>
+                    <View style={styles.block6SwiperBoxItemBottomCenter}>
+                      <Text style={styles.block6SwiperBoxItemBottomText}>
+                        {item.comment}
+                      </Text>
+                    </View>
+                    <View style={styles.block6SwiperBoxItemBottomRight}>
+                      <FontAwesome
+                        name="quote-right"
+                        size={pixelX(18)}
+                        color="#95989B"
+                      />
+                    </View>
                   </View>
                 </View>
-              </View>
-              <View style={styles.block6SwiperBoxItem}>
-                <View style={styles.block6SwiperBoxItemTop}>
-                  <Text style={styles.block6SwiperBoxItemTopText}>
-                    上海市用户 198****3829
-                  </Text>
-                </View>
-                <View style={styles.block6SwiperBoxItemBottom}>
-                  <View style={styles.block6SwiperBoxItemBottomLeft}>
-                    <FontAwesome
-                      name="quote-left"
-                      size={pixelX(16)}
-                      color="#95989B"
-                    />
-                  </View>
-                  <View style={styles.block6SwiperBoxItemBottomCenter}>
-                    <Text style={styles.block6SwiperBoxItemBottomText}>
-                      衣服洗得非常干净！
-                    </Text>
-                  </View>
-                  <View style={styles.block6SwiperBoxItemBottomRight}>
-                    <FontAwesome
-                      name="quote-right"
-                      size={pixelX(18)}
-                      color="#95989B"
-                    />
-                  </View>
-                </View>
-              </View>
-              <View style={styles.block6SwiperBoxItem}>
-                <View style={styles.block6SwiperBoxItemTop}>
-                  <Text style={styles.block6SwiperBoxItemTopText}>
-                    杭州市用户 198****3829
-                  </Text>
-                </View>
-                <View style={styles.block6SwiperBoxItemBottom}>
-                  <View style={styles.block6SwiperBoxItemBottomLeft}>
-                    <FontAwesome
-                      name="quote-left"
-                      size={pixelX(16)}
-                      color="#95989B"
-                    />
-                  </View>
-                  <View style={styles.block6SwiperBoxItemBottomCenter}>
-                    <Text style={styles.block6SwiperBoxItemBottomText}>
-                      衣服洗得非常干净！
-                    </Text>
-                  </View>
-                  <View style={styles.block6SwiperBoxItemBottomRight}>
-                    <FontAwesome
-                      name="quote-right"
-                      size={pixelX(18)}
-                      color="#95989B"
-                    />
-                  </View>
-                </View>
-              </View>
+              ))}
             </Swiper>
           </View>
         </ImageBackground>

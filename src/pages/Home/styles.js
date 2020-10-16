@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   block1: {
-    height: pixelY(45),
+    height: pixelY(50),
     backgroundColor: '#fff',
     flexDirection: 'row',
     justifyContent: 'center',
@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
   locationText: {
     color: '#333',
     fontSize: pixelX(18),
+    marginRight: pixelX(5),
   },
   block2: {
     width: windowW,
