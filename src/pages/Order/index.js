@@ -7,37 +7,67 @@ import {
   RefreshControl,
   StatusBar,
   SectionList,
+  Image,
+  FlatList,
   SafeAreaView,
-  StyleSheet,
   ActivityIndicator,
 } from 'react-native';
 import Toast, { DURATION } from 'react-native-easy-toast';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import styles from './styles';
+import { DATA } from './utils';
 import { pixelX, pixelY, wait } from '../../utils';
 
-const DATA = [
-  {
-    title: '2020年10月16日',
-    data: ['Pizza', 'Burger', 'Risotto'],
-  },
-  {
-    title: '2020年10月17日',
-    data: ['French Fries', 'Onion Rings', 'Fried Shrimps'],
-  },
-  {
-    title: '2020年10月18日',
-    data: ['Water', 'Coke', 'Beer'],
-  },
-  {
-    title: '2020年10月19日',
-    data: ['Cheese Cake', 'Ice Cream'],
-  },
-];
-
-const Item = ({ title }) => (
-  <View style={styles.item}>
-    <Text style={styles.title}>{title}</Text>
-  </View>
-);
+const renderItem = ({ item, index, separators }) => {
+  const { status, type = {}, total, totalPrice, isComment, id, time } = item;
+  const { label, img, num } = type;
+  return (
+    <View style={styles.itemBox}>
+      <View style={styles.itemContent}>
+        <View style={styles.itemTop}>
+          <View style={styles.itemTopLeft}>
+            <Ionicons name="time" size={pixelX(18)} color="#FFBB8E" />
+            <Text style={styles.itemTopLeftOrder}>{time}</Text>
+          </View>
+          <Text t={true} style={styles.itemTopRightTime}>
+            {status}
+          </Text>
+        </View>
+        <View style={styles.itemCenter}>
+          <View style={styles.itemCenterLeft}>
+            <Image source={img} style={styles.itemCenterLeftImg} />
+            <Text style={styles.itemCenterLeftLabel}>{label}</Text>
+          </View>
+          <Text style={styles.itemCenterRightText}>{`共${total}件`}</Text>
+        </View>
+        <View style={styles.itemBottom}>
+          <View style={styles.itemBottomLeft}>
+            <Text style={styles.itemBottomLeftText1}>总价：</Text>
+            <FontAwesome name="rmb" size={pixelX(16)} color="#D36767" />
+            <Text style={styles.itemBottomLeftText2}>{totalPrice}</Text>
+          </View>
+          <View style={styles.itemBottomRight}>
+            <TouchableOpacity
+              activeOpacity={0.6}
+              style={styles.itemBottomRightAgain}
+            >
+              <Text style={styles.itemBottomRightText}>再来一单</Text>
+            </TouchableOpacity>
+            {isComment ? null : (
+              <TouchableOpacity
+                activeOpacity={0.6}
+                style={styles.itemBottomRightComment}
+              >
+                <Text style={styles.itemBottomRightText}>去评价</Text>
+              </TouchableOpacity>
+            )}
+          </View>
+        </View>
+      </View>
+    </View>
+  );
+};
 
 const HeaderComponent = () => (
   <View
@@ -74,23 +104,6 @@ const ListFooterComponent = ({ animating }) => (
     color="#007ACC"
   />
 );
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#ddd',
-  },
-  item: {
-    padding: 20,
-    marginVertical: 8,
-  },
-  header: {
-    fontSize: 32,
-  },
-  title: {
-    fontSize: 24,
-  },
-});
 
 export default function OrderScreen() {
   const [refreshing, setRefreshing] = useState(false); // 下拉刷新状态
@@ -132,20 +145,16 @@ export default function OrderScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <HeaderComponent />
-      <SectionList
-        sections={dataList}
-        keyExtractor={(item, index) => item + index}
-        renderItem={({ item }) => <Item title={item} />}
-        renderSectionHeader={({ section: { title } }) => (
-          <Text style={styles.header}>{title}</Text>
-        )}
+      <FlatList
+        data={dataList}
+        keyExtractor={(item, index) => item.key}
+        renderItem={renderItem}
         onRefresh={onRefresh}
         refreshing={refreshing}
         onEndReached={onEndReached}
         onEndReachedThreshold={0.2}
         ListEmptyComponent={<ListEmptyComponent />}
         ListFooterComponent={<ListFooterComponent animating={loading} />}
-        showsVerticalScrollIndicator={false}
       />
       <Toast
         ref={ref => {
