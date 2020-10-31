@@ -62,17 +62,11 @@ const Screen = ({ navigation }) => {
       });
   };
   useEffect(() => {
-    console.log(0);
     const unsubscribe = navigation.addListener('focus', () => {
-      console.log(1);
       getCity();
     });
     return unsubscribe;
   }, []);
-  // useEffect(() => {
-  //   console.log(2);
-  //   getCity();
-  // }, []);
   const handlePressCity = () => {
     navigation.navigate('CityList');
   };

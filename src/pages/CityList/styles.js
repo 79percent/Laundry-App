@@ -7,19 +7,14 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f5f5f5',
   },
-  // 中间内容
   container: {
     flex: 1,
     flexDirection: 'column',
     backgroundColor: '#fff',
   },
-
   contentList: {
     backgroundColor: '#fff',
   },
-  // 1.选择当前的定位
-  // 定位的样式
-  // 2.渲染最近打开的地理位置
   contentListTagMap: {
     height: CONTENT_LIST_TAG,
     width: windowW,
@@ -45,7 +40,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ddd',
   },
-  // 3.渲染整个列表
   contentListIndex: {
     height: CONTENT_LIST_INDEX,
     width: windowW,
@@ -58,7 +52,6 @@ const styles = StyleSheet.create({
     lineHeight: CONTENT_LIST_INDEX,
     fontSize: pixelX(16),
     color: '#797979',
-    fontFamily: 'iconfont',
   },
   contentListTag: {
     height: CONTENT_LIST_TAG,
@@ -73,7 +66,6 @@ const styles = StyleSheet.create({
     color: '#999',
     fontWeight: 'bold',
   },
-  // 右侧
   rightIndex: {
     position: 'absolute',
     right: 0,
