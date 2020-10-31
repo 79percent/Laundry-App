@@ -9,6 +9,7 @@ import WelcomeScreen from './src/pages/Welcome';
 import RegisterScreen from './src/pages/Register';
 import LoginScreen from './src/pages/Login';
 import TabNavigator from './src/pages/TabNavigator';
+import CityListScreen from './src/pages/CityList';
 
 const Stack = createStackNavigator();
 
@@ -52,9 +53,23 @@ const authScreens = {
 // 已登录时的页面
 const userScreens = {
   TabNavigator: {
-    // 主页
+    // 首页、订单、我的 Tab切换
     component: TabNavigator,
     options: { headerShown: false },
+  },
+  CityList: {
+    // 城市列表选择
+    component: CityListScreen,
+    options: {
+      title: '城市列表',
+      headerStyle: {
+        backgroundColor: '#fff',
+      },
+      headerTintColor: '#000',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+    },
   },
 };
 
@@ -79,7 +94,6 @@ const App = props => {
         }
       })
       .catch(err => {
-        console.log(err);
         setTimeout(() => {
           SplashScreen.hide();
         }, 500);

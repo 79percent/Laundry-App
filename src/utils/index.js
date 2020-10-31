@@ -27,7 +27,7 @@ export const setStorage = async ({ key, value }) => {
     await AsyncStorage.setItem(key, JSON.stringify(value));
     return true;
   } catch (e) {
-    console.log(e);
+    return Promise.reject(e);
   }
 };
 // 获取本地存储数据
@@ -36,7 +36,7 @@ export const getStorage = async key => {
     const value = await AsyncStorage.getItem(key);
     return value != null ? JSON.parse(value) : null;
   } catch (e) {
-    console.log(e);
+    return Promise.reject(e);
   }
 };
 // 删除本地存储数据
@@ -45,7 +45,7 @@ export const removeStorage = async key => {
     await AsyncStorage.removeItem(key);
     return true;
   } catch (e) {
-    console.log(e);
+    return Promise.reject(e);
   }
 };
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import {
   View,
   Text,
@@ -17,38 +17,71 @@ import Swiper from 'react-native-swiper';
 import styles from './styles';
 import { loginOut } from '../../redux/modules/userInfo/action';
 import { queryLoaction } from '../../services';
-import { pixelY, pixelX } from '../../utils';
+import { pixelY, pixelX, getStorage, setStorage } from '../../utils';
 import { bannerArr, typesArr, serviceArr, commentsList } from './utils';
 import footerImg from '../../assets/img/footerImg.jpg';
 
-const Screen = ({ navigation, onLoginOut }) => {
+const Screen = ({ navigation }) => {
   const [location, setLocation] = useState(''); // 存储地理位置
-  // 获取当前所在位置
-  Geolocation.getCurrentPosition(
-    info => {
-      const { coords } = info;
-      const { latitude, longitude } = coords;
-      queryLoaction([latitude, longitude])
-        .then(result => {
-          const { addressComponent } = result;
-          const { province, city, district } = addressComponent; // 省 市 区
-          setLocation(`${city}${district}`);
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    },
-    err => console.log(err),
-    {
-      maximumAge: 1000 * 60 * 10,
-    }
-  );
+  const getCity = () => {
+    getStorage('city')
+      .then(res => {
+        if (res !== null) {
+          const parseRes = JSON.parse(res);
+          const { name } = parseRes;
+          setLocation(name);
+        } else {
+          return Promise.reject();
+        }
+      })
+      .catch(() => {
+        // 获取当前所在位置
+        Geolocation.getCurrentPosition(
+          info => {
+            const { coords } = info;
+            const { latitude, longitude } = coords;
+            queryLoaction([latitude, longitude])
+              .then(result => {
+                const { addressComponent } = result;
+                const { province, city, district } = addressComponent; // 省 市 区
+                const cityName = `${city}${district}`;
+                setStorage({
+                  key: 'city',
+                  value: cityName,
+                }).then(() => {
+                  setLocation(`${city}${district}`);
+                });
+              })
+              .catch(error => {});
+          },
+          err => {},
+          {
+            maximumAge: 1000 * 60 * 10,
+          }
+        );
+      });
+  };
+  useEffect(() => {
+    console.log(0);
+    const unsubscribe = navigation.addListener('focus', () => {
+      console.log(1);
+      getCity();
+    });
+    return unsubscribe;
+  }, []);
+  // useEffect(() => {
+  //   console.log(2);
+  //   getCity();
+  // }, []);
+  const handlePressCity = () => {
+    navigation.navigate('CityList');
+  };
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#fff" barStyle="dark-content" />
       {/* 所在城市 */}
       <View style={styles.block1}>
-        <TouchableOpacity style={styles.block1Touch}>
+        <TouchableOpacity style={styles.block1Touch} onPress={handlePressCity}>
           <Text style={styles.locationText}>{location || '选择城市'}</Text>
           <FontAwesome name="angle-down" size={pixelY(26)} color="#696f7a" />
         </TouchableOpacity>
@@ -160,12 +193,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return {
-    onLoginOut: () => {
-      const action = loginOut();
-      dispatch(action);
-    },
-  };
+  return {};
 };
 
 const HomeScreen = connect(mapStateToProps, mapDispatchToProps)(Screen);
