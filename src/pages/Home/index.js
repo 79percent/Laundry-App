@@ -15,7 +15,6 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Swiper from 'react-native-swiper';
 import styles from './styles';
-import { loginOut } from '../../redux/modules/userInfo/action';
 import { queryLoaction } from '../../services';
 import { pixelY, pixelX, getStorage, setStorage } from '../../utils';
 import { bannerArr, typesArr, serviceArr, commentsList } from './utils';
@@ -27,38 +26,40 @@ const Screen = ({ navigation }) => {
     getStorage('city')
       .then(res => {
         if (res !== null) {
-          const parseRes = JSON.parse(res);
-          const { name } = parseRes;
-          setLocation(name);
+          setLocation(res);
         } else {
-          return Promise.reject();
+          // 获取当前所在位置
+          Geolocation.getCurrentPosition(
+            info => {
+              const { coords } = info;
+              const { latitude, longitude } = coords;
+              queryLoaction([latitude, longitude])
+                .then(result => {
+                  const { addressComponent } = result;
+                  const { province, city, district } = addressComponent; // 省 市 区
+                  const cityName = `${city}${district}`;
+                  setStorage({
+                    key: 'city',
+                    value: cityName,
+                  }).then(() => {
+                    setLocation(`${city}${district}`);
+                  });
+                })
+                .catch(error => {
+                  console.log(error);
+                });
+            },
+            error => {
+              console.log(error);
+            },
+            {
+              maximumAge: 1000 * 60 * 10,
+            }
+          );
         }
       })
-      .catch(() => {
-        // 获取当前所在位置
-        Geolocation.getCurrentPosition(
-          info => {
-            const { coords } = info;
-            const { latitude, longitude } = coords;
-            queryLoaction([latitude, longitude])
-              .then(result => {
-                const { addressComponent } = result;
-                const { province, city, district } = addressComponent; // 省 市 区
-                const cityName = `${city}${district}`;
-                setStorage({
-                  key: 'city',
-                  value: cityName,
-                }).then(() => {
-                  setLocation(`${city}${district}`);
-                });
-              })
-              .catch(error => {});
-          },
-          err => {},
-          {
-            maximumAge: 1000 * 60 * 10,
-          }
-        );
+      .catch(error => {
+        console.log(error);
       });
   };
   useEffect(() => {

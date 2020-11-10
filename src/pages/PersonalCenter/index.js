@@ -20,6 +20,13 @@ const Screen = ({ navigation, onLoginOut }) => {
         color="#841584"
         accessibilityLabel="Learn more about this purple button"
       />
+      <View style={{ marginBottom: 20 }} />
+      <Button
+        onPress={() => {}}
+        title="清除缓存"
+        color="#841584"
+        accessibilityLabel="Learn more about this purple button"
+      />
     </View>
   );
 };
