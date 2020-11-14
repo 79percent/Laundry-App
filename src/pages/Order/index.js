@@ -12,12 +12,14 @@ import {
   SafeAreaView,
   ActivityIndicator,
 } from 'react-native';
-import Toast, { DURATION } from 'react-native-easy-toast';
+import { Toast } from 'react-native-gui';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import styles from './styles';
 import { DATA } from './utils';
 import { pixelX, pixelY, wait } from '../../utils';
+
+const { DURATION } = Toast;
 
 const renderItem = ({ item, index, separators }) => {
   const { status, type = {}, total, totalPrice, isComment, id, time } = item;
@@ -147,7 +149,7 @@ export default function OrderScreen() {
       <HeaderComponent />
       <FlatList
         data={dataList}
-        keyExtractor={(item, index) => item.key}
+        keyExtractor={(item, index) => index}
         renderItem={renderItem}
         onRefresh={onRefresh}
         refreshing={refreshing}
