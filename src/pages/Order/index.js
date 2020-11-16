@@ -98,14 +98,26 @@ const ListEmptyComponent = () => (
   </View>
 );
 
-const ListFooterComponent = ({ animating }) => (
-  <ActivityIndicator
-    style={{ height: pixelY(40) }}
-    animating={animating}
-    size="small"
-    color="#007ACC"
-  />
-);
+const ListFooterComponent = ({ animating, isNoMore }) => {
+  return isNoMore ? (
+    <ActivityIndicator
+      style={{ height: pixelY(60) }}
+      animating={animating}
+      size="small"
+      color="#007ACC"
+    />
+  ) : (
+    <View
+      style={{
+        height: pixelY(60),
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <Text style={{ color: '#000', fontSize: pixelX(14) }}>没有更多了</Text>
+    </View>
+  );
+};
 
 export default function OrderScreen() {
   const [refreshing, setRefreshing] = useState(false); // 下拉刷新状态
@@ -113,7 +125,6 @@ export default function OrderScreen() {
   const [page, setPage] = useState(0); // 当前页码
   const [totalPage, setTotalPage] = useState(0); // 总共页数
   const [dataList, setDataList] = useState([]); // 数据列表
-  let toast = null; // toast ref
   useEffect(() => {
     // 页面完成加载时，获取数据
     wait(1000).then(() => {
@@ -140,8 +151,6 @@ export default function OrderScreen() {
         setDataList([...dataList, ...DATA]);
         setLoading(false);
       });
-    } else {
-      toast && toast.show('没有更多了！', DURATION.LENGTH_LONG);
     }
   };
   return (
@@ -156,18 +165,12 @@ export default function OrderScreen() {
         onEndReached={onEndReached}
         onEndReachedThreshold={0.2}
         ListEmptyComponent={<ListEmptyComponent />}
-        ListFooterComponent={<ListFooterComponent animating={loading} />}
-      />
-      <Toast
-        ref={ref => {
-          toast = ref;
-        }}
-        style={{ backgroundColor: '#000' }}
-        position="center"
-        fadeInDuration={750}
-        fadeOutDuration={1000}
-        opacity={0.8}
-        textStyle={{ color: '#fff' }}
+        ListFooterComponent={
+          <ListFooterComponent
+            animating={loading}
+            isNoMore={page === 0 || page < totalPage}
+          />
+        }
       />
     </SafeAreaView>
   );

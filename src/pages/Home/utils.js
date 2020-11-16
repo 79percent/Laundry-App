@@ -6,6 +6,7 @@ import xixie from '../../assets/img/xixie.jpg';
 import xijiafang from '../../assets/img/xijiafang.jpg';
 import chuanglian from '../../assets/img/chuanglian.jpg';
 
+// 轮播图
 export const bannerArr = [
   {
     id: 'banner1',
@@ -21,6 +22,7 @@ export const bannerArr = [
   },
 ];
 
+// 专业清洗列表
 export const typesArr = [
   {
     id: 'xiyi',
@@ -44,6 +46,7 @@ export const typesArr = [
   },
 ];
 
+// 服务列表
 export const serviceArr = [
   {
     id: 'fuwujieshao',
@@ -65,6 +68,7 @@ export const serviceArr = [
   },
 ];
 
+// 评论列表
 export const commentsList = [
   {
     id: '0',

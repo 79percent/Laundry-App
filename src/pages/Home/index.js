@@ -19,9 +19,11 @@ import { queryLoaction } from '../../services';
 import { pixelY, pixelX, getStorage, setStorage } from '../../utils';
 import { bannerArr, typesArr, serviceArr, commentsList } from './utils';
 import footerImg from '../../assets/img/footerImg.jpg';
+import { onSaveHome } from '../../redux/modules/home/action';
 
-const Screen = ({ navigation }) => {
-  const [location, setLocation] = useState(''); // 存储地理位置
+const Screen = ({ navigation, home, onSave }) => {
+  const [location, setLocation] = useState(''); // 地理位置
+  // 获取城市
   const getCity = () => {
     getStorage('city')
       .then(res => {
@@ -68,6 +70,7 @@ const Screen = ({ navigation }) => {
     });
     return unsubscribe;
   }, []);
+  // 跳转到城市列表
   const handlePressCity = () => {
     navigation.navigate('CityList');
   };
@@ -183,12 +186,16 @@ const Screen = ({ navigation }) => {
 
 const mapStateToProps = state => {
   return {
-    userInfo: state.userInfo,
+    home: state.home,
   };
 };
 
 const mapDispatchToProps = dispatch => {
-  return {};
+  return {
+    onSave: obj => {
+      dispatch(onSaveHome(obj));
+    },
+  };
 };
 
 const HomeScreen = connect(mapStateToProps, mapDispatchToProps)(Screen);

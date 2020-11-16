@@ -8,7 +8,7 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint .",
-    "lint-fix": "eslint . --fix"
+    "fix": "eslint . --fix"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.12.0",

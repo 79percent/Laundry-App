@@ -38,15 +38,16 @@ export default class CityList extends React.Component {
     });
   };
 
+  // 吸顶首字母
   renderSectionHeader = ({ section }) => {
     return (
       <View style={styles.contentListIndex}>
-        {/* 吸顶首字母*/}
         <Text style={styles.contentListIndexText}>{section.sortLetters}</Text>
       </View>
     );
   };
 
+  // 城市名
   renderItem = ({ item, section }) => {
     return (
       <TouchableOpacity

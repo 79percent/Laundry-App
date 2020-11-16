@@ -12,7 +12,7 @@ import bgImg from '../../assets/img/bg.jpeg';
 import logo from '../../assets/img/logo.jpg';
 
 const WelcomeScreen = ({ navigation }) => {
-  const logoText = '欢迎光临 你妈个臭嗨';
+  const logoText = '欢迎光临';
   const createText = '创建新账号';
   const loginText = '使用已有账号登录';
   return (

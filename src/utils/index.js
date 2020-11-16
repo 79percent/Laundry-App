@@ -48,7 +48,10 @@ export const removeStorage = async key => {
     return Promise.reject(e);
   }
 };
-
+// 清除所有Storage
+export const clearStorage = () => {
+  return AsyncStorage.clear();
+};
 // 延迟
 export const wait = (timeout, isSuccess = true) => {
   return new Promise((resolve, reject) => {
