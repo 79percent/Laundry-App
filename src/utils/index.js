@@ -9,7 +9,7 @@ export const windowH = height;
 const statusHeight = StatusBar.currentHeight || 0;
 // 是否为Ios
 export const isIos = Platform.OS === 'ios';
-// 是否为IphoneXX
+// 是否为IphoneX
 export const isIphoneX = isIos && height >= 812;
 // 设计稿宽高
 export const [baseWidth, baseHeight] = [375, 667];
