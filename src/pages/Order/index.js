@@ -127,7 +127,7 @@ export default function OrderScreen() {
   const [dataList, setDataList] = useState([]); // 数据列表
   useEffect(() => {
     // 页面完成加载时，获取数据
-    wait(1000).then(() => {
+    wait(500).then(() => {
       setPage(1);
       setTotalPage(3);
       setDataList([...DATA]);
@@ -139,13 +139,13 @@ export default function OrderScreen() {
     setPage(1);
     setTotalPage(3);
     setDataList([...DATA]);
-    wait(1000).then(() => setRefreshing(false));
+    wait(500).then(() => setRefreshing(false));
   }, []);
   // 滚动到底部
   const onEndReached = () => {
     if (page < totalPage) {
       setLoading(true);
-      wait(1000).then(() => {
+      wait(500).then(() => {
         const newPage = page + 1;
         setPage(newPage);
         setDataList([...dataList, ...DATA]);

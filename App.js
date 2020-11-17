@@ -10,6 +10,7 @@ import RegisterScreen from './src/pages/Register';
 import LoginScreen from './src/pages/Login';
 import TabNavigator from './src/pages/TabNavigator';
 import CityListScreen from './src/pages/CityList';
+import AddOrderScreen from './src/pages/AddOrder';
 
 const Stack = createStackNavigator();
 
@@ -69,6 +70,17 @@ const userScreens = {
       headerTitleStyle: {
         fontWeight: 'bold',
       },
+    },
+  },
+  AddOrder: {
+    // 城市列表选择
+    component: AddOrderScreen,
+    options: {
+      title: '填写订单',
+      headerStyle: {
+        backgroundColor: '#fff',
+      },
+      headerTintColor: '#000',
     },
   },
 };

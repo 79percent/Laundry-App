@@ -62,3 +62,39 @@ export const wait = (timeout, isSuccess = true) => {
     }
   });
 };
+// 防抖函数
+export const debounce = (fn, waitTime) => {
+  let timer;
+  function func(...args) {
+    if (timer !== null) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(async function () {
+      try {
+        await fn(...args);
+        clearTimeout(timer);
+        timer = null;
+      } catch (error) {
+        clearTimeout(timer);
+        timer = null;
+      }
+    }, waitTime);
+  }
+  func.cancel = function () {
+    if (timer !== null) {
+      clearTimeout(timer);
+      timer = null;
+    }
+  };
+  return func;
+};
+/**
+ * 进制转换
+ * @param {String} str
+ * @param {Number} prevRadix
+ * @param {Number} nowRadix
+ * 例子：16转10进制
+ * convertRadix('12', 16, 10) => 返回 '18'
+ */
+export const convertRadix = (str = '', prevRadix = 10, nowRadix = 10) =>
+  parseInt(`${str}`, prevRadix).toString(nowRadix);

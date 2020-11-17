@@ -13,6 +13,7 @@ import { connect } from 'react-redux';
 import Geolocation from '@react-native-community/geolocation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Entypo from 'react-native-vector-icons/Entypo';
 import Swiper from 'react-native-swiper';
 import styles from './styles';
 import { queryLoaction } from '../../services';
@@ -74,12 +75,17 @@ const Screen = ({ navigation, home, onSave }) => {
   const handlePressCity = () => {
     navigation.navigate('CityList');
   };
+  // 点击清洗项
+  const handlePressItem = () => {
+    navigation.navigate('AddOrder');
+  };
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#fff" barStyle="dark-content" />
       {/* 所在城市 */}
       <View style={styles.block1}>
         <TouchableOpacity style={styles.block1Touch} onPress={handlePressCity}>
+          <Entypo name="location" size={pixelY(16)} color="#696f7a" />
           <Text style={styles.locationText}>{location || '选择城市'}</Text>
           <FontAwesome name="angle-down" size={pixelY(26)} color="#696f7a" />
         </TouchableOpacity>
@@ -106,6 +112,7 @@ const Screen = ({ navigation, home, onSave }) => {
               key={item.id}
               style={styles.block4Item}
               activeOpacity={0.6}
+              onPress={handlePressItem}
             >
               <Text style={styles.block4ItemLabel}>{item.label}</Text>
               <Image style={styles.block4ItemImg} source={item.img} />

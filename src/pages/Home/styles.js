@@ -1,8 +1,8 @@
 import { StyleSheet } from 'react-native';
 import { pixelX, pixelY, windowW } from '../../utils';
 
-const imgW = 2560;
-const imgH = 1600;
+const imgW = 1100;
+const imgH = 725;
 
 const footerImgW = 1000;
 const footerImgH = 283;
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   locationText: {
     color: '#333',
     fontSize: pixelX(18),
-    marginRight: pixelX(5),
+    marginHorizontal: pixelX(5),
   },
   block2: {
     width: windowW,

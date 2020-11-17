@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#ccc',
+    backgroundColor: '#E3E0E0',
   },
   scrollView: {
     width: '100%',
@@ -72,12 +72,21 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  block1ItemIcon: {
+    width: pixelX(28),
+    height: pixelX(28),
+  },
   block1ItemLine: {
     borderLeftWidth: pixelX(1),
-    borderLeftColor: '#E3B971',
+    borderLeftColor: '#F0D8AA',
   },
   block1ItemText: {
-    color: '#333',
+    color: '#000',
+    fontSize: pixelX(14),
+    marginTop: pixelY(5),
+  },
+  block1ItemValue: {
+    color: '#5D5D5D',
     fontSize: pixelX(12),
     marginTop: pixelY(5),
   },
@@ -96,7 +105,7 @@ const styles = StyleSheet.create({
   },
   sectionItemLine: {
     borderTopWidth: pixelX(1),
-    borderTopColor: '#E3B971',
+    borderTopColor: '#F0D8AA',
   },
   sectionItemTopradius: {
     borderTopLeftRadius: pixelX(10),
@@ -115,6 +124,22 @@ const styles = StyleSheet.create({
     color: '#000',
     fontSize: pixelX(16),
     marginLeft: pixelX(10),
+  },
+  footer: {
+    width: '100%',
+    height: pixelY(60),
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  footerBtn: {
+    backgroundColor: '#F76262',
+    paddingHorizontal: pixelX(80),
+    paddingVertical: pixelX(10),
+    borderRadius: pixelX(10),
+  },
+  footerBtnText: {
+    fontSize: pixelX(16),
+    color: '#fff',
   },
 });
 
