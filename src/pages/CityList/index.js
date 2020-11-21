@@ -1,3 +1,4 @@
+/* eslint-disable react/state-in-constructor */
 import React from 'react';
 import {
   StyleSheet,
@@ -6,12 +7,45 @@ import {
   TouchableOpacity,
   SectionList,
 } from 'react-native';
+import Geolocation from '@react-native-community/geolocation';
+import { queryLoaction } from '../../services';
 import cityIndex from './cityData';
 import styles from './styles';
 import { CONTENT_LIST_INDEX, CONTENT_LIST_TAG } from './utils';
 import { setStorage } from '../../utils';
 
 export default class CityList extends React.Component {
+  state = {
+    currentCity: '',
+  };
+
+  componentDidMount() {
+    Geolocation.getCurrentPosition(
+      info => {
+        const { coords } = info;
+        const { latitude, longitude } = coords;
+        queryLoaction([latitude, longitude])
+          .then(result => {
+            const { addressComponent } = result;
+            const { province, city, district } = addressComponent; // 省 市 区
+            const cityName = `${city}${district}`;
+            this.setState({
+              currentCity: cityName,
+            });
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      },
+      error => {
+        console.log(error);
+      },
+      {
+        maximumAge: 1000 * 60 * 10,
+      }
+    );
+  }
+
   refSectionList = null;
 
   // 滚动至index位置
@@ -27,8 +61,7 @@ export default class CityList extends React.Component {
   };
 
   // 点击城市
-  handlePressCity = cityItem => {
-    const { name } = cityItem;
+  handlePressCity = name => {
     setStorage({
       key: 'city',
       value: name,
@@ -52,7 +85,7 @@ export default class CityList extends React.Component {
     return (
       <TouchableOpacity
         onPress={() => {
-          this.handlePressCity(item);
+          this.handlePressCity(item.name);
         }}
       >
         <View style={styles.contentListTag}>
@@ -80,7 +113,28 @@ export default class CityList extends React.Component {
     });
   };
 
-  render = () => {
+  // 渲染当前地区
+  renderListHeaderComponent = () => {
+    const { currentCity } = this.state;
+    return (
+      <View>
+        <View style={styles.contentListIndex}>
+          <Text style={styles.contentListIndexText}>当前地区</Text>
+        </View>
+        <TouchableOpacity
+          onPress={() => {
+            this.handlePressCity(currentCity);
+          }}
+        >
+          <View style={styles.currentCity}>
+            <Text style={styles.currentCityText}>{currentCity}</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+    );
+  };
+
+  render() {
     return (
       <View style={styles.page}>
         <View style={styles.container}>
@@ -91,6 +145,7 @@ export default class CityList extends React.Component {
                 ref={ref => {
                   this.refSectionList = ref;
                 }}
+                ListHeaderComponent={this.renderListHeaderComponent}
                 stickySectionHeadersEnabled={true} // 吸顶
                 sections={cityIndex}
                 renderSectionHeader={this.renderSectionHeader}
@@ -112,5 +167,5 @@ export default class CityList extends React.Component {
         </View>
       </View>
     );
-  };
+  }
 }

@@ -1,31 +1,137 @@
-import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { Component, useState } from 'react';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import styles from './styles';
+import { pixelY } from '../../utils';
+import xiyi from '../../assets/img/xiyi.jpg';
 
 export default function AddOrder() {
+  const [cardIndex, setCatdIndex] = useState(0);
+  const handlePressCardTop = index => {
+    setCatdIndex(index);
+  };
   return (
     <LinearGradient
       start={{ x: 0, y: 0 }}
       end={{ x: 0, y: 1 }}
-      locations={[0, 0.7, 1]}
-      colors={['#ccc', '#fff']}
+      locations={[0, 1]}
+      colors={['#ccc', '#F5F5F5']}
       style={styles.linearGradient}
     >
       <View style={styles.card1}>
+        {/* 选择项 */}
         <View style={styles.card1TopSelect}>
-          <View style={styles.card1TopSelect1}>
-            <View style={styles.card1TopSelect1Content}>
-              <Text style={styles.card1TopSelect1ContentText}>上门取件</Text>
+          <TouchableOpacity
+            activeOpacity={1}
+            style={[
+              styles.card1TopSelect1,
+              cardIndex === 0 ? null : styles.cardTopNoSelected,
+            ]}
+            onPress={() => handlePressCardTop(0)}
+          >
+            <View
+              style={[
+                styles.card1TopSelect1Content,
+                cardIndex === 0 ? styles.cardTopContentSelected : null,
+              ]}
+            >
+              <Text
+                style={
+                  cardIndex === 0
+                    ? styles.card1TopSelect1ContentTextSelect
+                    : styles.card1TopSelect1ContentTextNoSelect
+                }
+              >
+                上门取件
+              </Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity
+            activeOpacity={1}
+            style={[
+              styles.card1TopSelect1,
+              cardIndex === 1 ? null : styles.cardTopNoSelected,
+            ]}
+            onPress={() => handlePressCardTop(1)}
+          >
+            <View
+              style={[
+                styles.card1TopSelect2Content,
+                cardIndex === 1 ? styles.cardTopContentSelected : null,
+              ]}
+            >
+              <Text
+                style={
+                  cardIndex === 1
+                    ? styles.card1TopSelect1ContentTextSelect
+                    : styles.card1TopSelect1ContentTextNoSelect
+                }
+              >
+                到店取送
+              </Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+        {/* 地址 */}
+        <View
+          style={[
+            styles.card1SiteSelect,
+            cardIndex === 1
+              ? styles.card1SiteSelectLeft
+              : styles.card1SiteSelectRight,
+          ]}
+        >
+          <View style={styles.siteBox}>
+            <View style={styles.siteLeft}>
+              <View style={styles.siteLeftTop}>
+                <Text style={styles.tag}>学校</Text>
+                <Text style={styles.siteText}>
+                  杭州市江干区下沙街道美达晓城天地
+                </Text>
+              </View>
+              <View style={styles.siteLeftBottom}>
+                <Text style={styles.name}>葛（先生） 19817802786</Text>
+              </View>
+            </View>
+            <View style={styles.siteRight}>
+              <AntDesign name="right" size={pixelY(20)} color="#696f7a" />
             </View>
           </View>
-          <View style={styles.card1TopSelect2}>
-            <View style={styles.card1TopSelect2Content}>
-              <Text style={styles.card1TopSelect2ContentText}>自取送</Text>
+          {/* 时间 */}
+          <View style={styles.timeBox}>
+            <Text style={styles.timeBoxLeft}>立即取件</Text>
+            <View style={styles.timeBoxRight}>
+              <Text style={styles.time}>约16:15到达</Text>
+              <AntDesign name="right" size={pixelY(16)} color="#696f7a" />
             </View>
           </View>
         </View>
-        <View style={styles.card1SiteSelect} />
+      </View>
+      {/* 店名 件数 */}
+      <View style={styles.listBox}>
+        <View style={styles.shopName}>
+          <Text style={styles.shopNameText}>杭州下沙店</Text>
+          <Text style={styles.shopNameRight}>店长专送</Text>
+        </View>
+        <View style={styles.imgItem}>
+          <View style={styles.imgItemLeft}>
+            <Image source={xiyi} style={styles.img} />
+            <Text style={styles.imgItemText}>洗衣</Text>
+          </View>
+          <View style={styles.imgItemRight}>
+            <Text style={styles.imgItemRightText}>件数</Text>
+            <View style={styles.imgItemRightRow}>
+              <AntDesign
+                name="minussquareo"
+                size={pixelY(20)}
+                color="#696f7a"
+              />
+              <Text style={styles.imgItemRightRowNum}>2</Text>
+              <AntDesign name="plussquareo" size={pixelY(20)} color="#696f7a" />
+            </View>
+          </View>
+        </View>
       </View>
     </LinearGradient>
   );

@@ -86,5 +86,20 @@ const styles = StyleSheet.create({
     color: '#9b9b9b',
     fontWeight: 'bold',
   },
+  currentCity: {
+    maxWidth: pixelX(140),
+    height: pixelX(40),
+    marginVertical: pixelX(10),
+    marginLeft: pixelX(20),
+    borderRadius: pixelX(5),
+    borderColor: '#ccc',
+    borderWidth: pixelX(1),
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  currentCityText: {
+    color: '#000',
+    fontSize: pixelX(16),
+  },
 });
 export default styles;
