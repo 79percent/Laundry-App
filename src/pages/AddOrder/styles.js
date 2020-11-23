@@ -14,6 +14,8 @@ export default StyleSheet.create({
   card1TopSelect: {
     width: '100%',
     flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'flex-end',
     height: pixelY(40),
   },
   card1SiteSelect: {
@@ -31,7 +33,8 @@ export default StyleSheet.create({
     borderTopRightRadius: pixelX(5),
   },
   card1TopSelect1: {
-    flex: 1,
+    width: '50%',
+    height: '100%',
   },
   card1TopSelect1Content: {
     backgroundColor: '#E0F5FA',
