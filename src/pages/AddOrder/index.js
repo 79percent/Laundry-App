@@ -2,6 +2,7 @@ import React, { Component, useState } from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import styles from './styles';
 import { pixelY } from '../../utils';
 import xiyi from '../../assets/img/xiyi.jpg';
@@ -124,12 +125,33 @@ export default function AddOrder() {
             <View style={styles.imgItemRightRow}>
               <AntDesign
                 name="minussquareo"
-                size={pixelY(20)}
+                size={pixelY(26)}
                 color="#696f7a"
               />
               <Text style={styles.imgItemRightRowNum}>2</Text>
-              <AntDesign name="plussquareo" size={pixelY(20)} color="#696f7a" />
+              <AntDesign name="plussquareo" size={pixelY(26)} color="#696f7a" />
             </View>
+          </View>
+        </View>
+        <View style={[styles.listItem, styles.bottomLine]}>
+          <Text style={styles.listItemLeft}>服务费</Text>
+          <View style={styles.listItemRight}>
+            <FontAwesome name="rmb" size={pixelY(16)} color="#B4B4B4" />
+            <Text style={styles.listItemRightText}>3</Text>
+          </View>
+        </View>
+        <View style={[styles.listItem]}>
+          <Text style={styles.listItemLeft}>优惠券</Text>
+          <View style={styles.listItemRight}>
+            <Text style={styles.listItemRightText2}>一张可用</Text>
+            <AntDesign name="right" size={pixelY(16)} color="#8BC1E5" />
+          </View>
+        </View>
+        <View style={[styles.listItem, styles.bottomLine]}>
+          <Text style={styles.listItemLeft}>红包</Text>
+          <View style={styles.listItemRight}>
+            <Text style={styles.listItemRightText3}>暂无可用</Text>
+            <AntDesign name="right" size={pixelY(16)} color="#E37C71" />
           </View>
         </View>
       </View>

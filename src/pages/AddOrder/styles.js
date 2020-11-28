@@ -154,7 +154,7 @@ export default StyleSheet.create({
   shopName: {
     width: '100%',
     height: pixelY(40),
-    borderBottomColor: '#ccc',
+    borderBottomColor: '#DEDEDE',
     borderBottomWidth: pixelX(1),
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -162,7 +162,7 @@ export default StyleSheet.create({
   },
   shopNameText: {
     fontSize: pixelX(18),
-    color: '#000',
+    color: '#46799D',
   },
   shopNameRight: {
     fontSize: pixelX(14),
@@ -177,7 +177,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     height: pixelY(100),
-    borderBottomColor: '#ccc',
+    borderBottomColor: '#DEDEDE',
     borderBottomWidth: pixelX(1),
   },
   img: {
@@ -209,8 +209,43 @@ export default StyleSheet.create({
     marginTop: pixelY(15),
   },
   imgItemRightRowNum: {
-    fontSize: pixelX(14),
+    fontSize: pixelX(16),
     color: '#000',
     marginHorizontal: pixelX(10),
+  },
+  listItem: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '100%',
+    height: pixelY(40),
+  },
+  listItemLeft: {
+    color: '#B4B4B4',
+    fontSize: pixelX(16),
+  },
+  listItemRight: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  listItemRightText: {
+    color: '#B4B4B4',
+    fontSize: pixelX(20),
+    marginLeft: pixelX(5),
+  },
+  listItemRightText2: {
+    color: '#8BC1E5',
+    fontSize: pixelX(16),
+    marginLeft: pixelX(5),
+  },
+  listItemRightText3: {
+    color: '#E37C71',
+    fontSize: pixelX(16),
+    marginLeft: pixelX(5),
+  },
+  bottomLine: {
+    borderBottomColor: '#DEDEDE',
+    borderBottomWidth: pixelX(1),
   },
 });
