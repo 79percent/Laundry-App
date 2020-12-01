@@ -10,6 +10,7 @@ export default StyleSheet.create({
     width: windowW - pixelX(20),
     height: pixelY(200),
     marginTop: pixelY(20),
+    marginHorizontal: pixelX(10),
   },
   card1TopSelect: {
     width: '100%',
@@ -146,10 +147,11 @@ export default StyleSheet.create({
   listBox: {
     marginTop: pixelY(20),
     width: windowW - pixelX(20),
-    height: pixelY(300),
+    // height: pixelY(300),
     backgroundColor: '#fff',
     borderRadius: pixelY(5),
     paddingHorizontal: pixelX(10),
+    marginHorizontal: pixelX(10),
   },
   shopName: {
     width: '100%',
@@ -247,5 +249,82 @@ export default StyleSheet.create({
   bottomLine: {
     borderBottomColor: '#DEDEDE',
     borderBottomWidth: pixelX(1),
+  },
+  ruleLeft: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
+  ruleLeftmg: {
+    marginRight: pixelX(5),
+  },
+  ruleRight: {
+    color: '#B4B4B4',
+    fontSize: pixelX(24),
+    marginLeft: pixelX(5),
+  },
+  card2: {
+    marginTop: pixelY(20),
+    width: windowW - pixelX(20),
+    backgroundColor: '#fff',
+    borderRadius: pixelY(5),
+    paddingHorizontal: pixelX(10),
+    marginHorizontal: pixelX(10),
+  },
+  card2Item: {
+    flexDirection: 'row',
+    width: '100%',
+    height: pixelY(40),
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  card2ItemLeft: {
+    color: '#7190A5',
+    fontSize: pixelX(16),
+  },
+  card2ItemRightText: {
+    color: '#ccc',
+    fontSize: pixelX(16),
+    marginLeft: pixelX(5),
+  },
+  footermg: {
+    marginBottom: pixelY(100),
+  },
+  payBox: {
+    position: 'absolute',
+    left: 0,
+    bottom: 0,
+    width: '100%',
+    height: pixelY(60),
+    borderTopLeftRadius: pixelY(30),
+    borderTopRightRadius: pixelY(30),
+    overflow: 'hidden',
+    flexDirection: 'row',
+  },
+  payBoxLeft: {
+    flex: 3,
+    backgroundColor: '#718395',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: pixelX(10),
+  },
+  payBoxLeftText1: {
+    color: '#FFF',
+    fontSize: pixelX(20),
+  },
+  payBoxLeftText2: {
+    color: '#FFF',
+    fontSize: pixelX(24),
+  },
+  payBoxRight: {
+    flex: 1.2,
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  payBoxRightText: {
+    color: '#7190A5',
+    fontSize: pixelX(20),
   },
 });
