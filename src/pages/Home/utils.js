@@ -62,7 +62,7 @@ export const serviceArr = [
   },
   {
     id: 'PriceTable',
-    label: '价格表',
+    label: '价格中心',
     iconName: 'ios-menu-outline',
     iconType: 'Ionicons',
   },

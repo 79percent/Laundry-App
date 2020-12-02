@@ -12,6 +12,7 @@ import TabNavigator from './src/pages/TabNavigator';
 import CityListScreen from './src/pages/CityList';
 import AddOrderScreen from './src/pages/AddOrder';
 import IntroductionScreen from './src/pages/Introduction';
+import RangeScreen from './src/pages/Range';
 
 const Stack = createStackNavigator();
 
@@ -89,6 +90,17 @@ const userScreens = {
     component: IntroductionScreen,
     options: {
       title: '服务介绍',
+      headerStyle: {
+        backgroundColor: '#9DC6E0',
+      },
+      headerTintColor: '#fff',
+    },
+  },
+  Range: {
+    // 服务介绍
+    component: RangeScreen,
+    options: {
+      title: '服务范围',
       headerStyle: {
         backgroundColor: '#9DC6E0',
       },
