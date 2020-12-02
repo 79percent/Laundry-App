@@ -49,19 +49,19 @@ export const typesArr = [
 // 服务列表
 export const serviceArr = [
   {
-    id: 'fuwujieshao',
+    id: 'Introduction',
     label: '服务介绍',
     iconName: 'ios-albums',
     iconType: 'Ionicons',
   },
   {
-    id: 'fuwufanwei',
+    id: 'Range',
     label: '服务范围',
     iconName: 'globe',
     iconType: 'FontAwesome',
   },
   {
-    id: 'jiagebiao',
+    id: 'PriceTable',
     label: '价格表',
     iconName: 'ios-menu-outline',
     iconType: 'Ionicons',

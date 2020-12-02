@@ -71,20 +71,18 @@ const Screen = ({ navigation, home, onSave }) => {
     });
     return unsubscribe;
   }, []);
-  // 跳转到城市列表
-  const handlePressCity = () => {
-    navigation.navigate('CityList');
-  };
-  // 点击清洗项
-  const handlePressItem = () => {
-    navigation.navigate('AddOrder');
+  const navigatePage = route => {
+    navigation.navigate(route);
   };
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#fff" barStyle="dark-content" />
       {/* 所在城市 */}
       <View style={styles.block1}>
-        <TouchableOpacity style={styles.block1Touch} onPress={handlePressCity}>
+        <TouchableOpacity
+          style={styles.block1Touch}
+          onPress={() => navigatePage('CityList')}
+        >
           <Entypo name="location" size={pixelY(16)} color="#696f7a" />
           <Text style={styles.locationText}>{location || '选择城市'}</Text>
           <FontAwesome name="angle-down" size={pixelY(26)} color="#696f7a" />
@@ -112,7 +110,7 @@ const Screen = ({ navigation, home, onSave }) => {
               key={item.id}
               style={styles.block4Item}
               activeOpacity={0.6}
-              onPress={handlePressItem}
+              onPress={() => navigatePage('AddOrder')}
             >
               <Text style={styles.block4ItemLabel}>{item.label}</Text>
               <Image style={styles.block4ItemImg} source={item.img} />
@@ -126,6 +124,7 @@ const Screen = ({ navigation, home, onSave }) => {
               key={item.id}
               style={styles.block4Item}
               activeOpacity={0.6}
+              onPress={() => navigatePage(item.id)}
             >
               {item.iconType === 'Ionicons' ? (
                 <Ionicons

@@ -11,6 +11,7 @@ import LoginScreen from './src/pages/Login';
 import TabNavigator from './src/pages/TabNavigator';
 import CityListScreen from './src/pages/CityList';
 import AddOrderScreen from './src/pages/AddOrder';
+import IntroductionScreen from './src/pages/Introduction';
 
 const Stack = createStackNavigator();
 
@@ -78,9 +79,20 @@ const userScreens = {
     options: {
       title: '填写订单',
       headerStyle: {
-        backgroundColor: '#fff',
+        backgroundColor: '#9DC6E0',
       },
-      headerTintColor: '#000',
+      headerTintColor: '#fff',
+    },
+  },
+  Introduction: {
+    // 服务介绍
+    component: IntroductionScreen,
+    options: {
+      title: '服务介绍',
+      headerStyle: {
+        backgroundColor: '#9DC6E0',
+      },
+      headerTintColor: '#fff',
     },
   },
 };

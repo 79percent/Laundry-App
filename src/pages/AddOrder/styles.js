@@ -303,7 +303,7 @@ export default StyleSheet.create({
   },
   payBoxLeft: {
     flex: 3,
-    backgroundColor: '#718395',
+    backgroundColor: '#B4CEE5',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -324,7 +324,7 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   payBoxRightText: {
-    color: '#7190A5',
+    color: '#466274',
     fontSize: pixelX(20),
   },
 });

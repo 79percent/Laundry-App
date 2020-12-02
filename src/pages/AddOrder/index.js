@@ -1,5 +1,12 @@
 import React, { Component, useState } from 'react';
-import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  ScrollView,
+  StatusBar,
+} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -20,6 +27,11 @@ export default function AddOrder() {
       colors={['#ccc', '#F5F5F5']}
       style={styles.linearGradient}
     >
+      <StatusBar
+        hidden={false}
+        backgroundColor="#9DC6E0"
+        barStyle="light-content"
+      />
       <View style={{ flex: 1, width: '100%' }}>
         <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
           <View style={styles.card1}>
