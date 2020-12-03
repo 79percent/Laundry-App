@@ -13,6 +13,7 @@ import CityListScreen from './src/pages/CityList';
 import AddOrderScreen from './src/pages/AddOrder';
 import IntroductionScreen from './src/pages/Introduction';
 import RangeScreen from './src/pages/Range';
+import PriceTableScreen from './src/pages/PriceTable';
 
 const Stack = createStackNavigator();
 
@@ -61,7 +62,7 @@ const userScreens = {
     options: { headerShown: false },
   },
   CityList: {
-    // 城市列表选择
+    // 城市列表
     component: CityListScreen,
     options: {
       title: '城市列表',
@@ -75,7 +76,7 @@ const userScreens = {
     },
   },
   AddOrder: {
-    // 城市列表选择
+    // 填写订单
     component: AddOrderScreen,
     options: {
       title: '填写订单',
@@ -97,10 +98,21 @@ const userScreens = {
     },
   },
   Range: {
-    // 服务介绍
+    // 服务范围
     component: RangeScreen,
     options: {
       title: '服务范围',
+      headerStyle: {
+        backgroundColor: '#9DC6E0',
+      },
+      headerTintColor: '#fff',
+    },
+  },
+  PriceTable: {
+    // 价格中心
+    component: PriceTableScreen,
+    options: {
+      title: '价格中心',
       headerStyle: {
         backgroundColor: '#9DC6E0',
       },
