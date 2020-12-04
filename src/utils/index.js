@@ -90,11 +90,20 @@ export const debounce = (fn, waitTime) => {
 };
 /**
  * 进制转换
- * @param {String} str
- * @param {Number} prevRadix
- * @param {Number} nowRadix
- * 例子：16转10进制
+ * @param {String} str 需要转换的值
+ * @param {Number} prevRadix 转换前的进制
+ * @param {Number} nowRadix 转换后的进制
+ * @param {Number} len 前面补0的长度
+ * 例子1：16转10进制
  * convertRadix('12', 16, 10) => 返回 '18'
+ * 例子2：前面补0
+ * convertRadix('12', 16, 10, 4) => 返回 '0018';
  */
-export const convertRadix = (str = '', prevRadix = 10, nowRadix = 10) =>
-  parseInt(`${str}`, prevRadix).toString(nowRadix);
+export const convertRadix = (str = '', prevRadix = 10, nowRadix = 10, len) => {
+  if (len) {
+    return parseInt(`${str}`, prevRadix)
+      .toString(nowRadix)
+      .padStart(len, '0');
+  }
+  return parseInt(`${str}`, prevRadix).toString(nowRadix);
+};

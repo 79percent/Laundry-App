@@ -2138,6 +2138,14 @@ color-string@^1.5.2:
     color-name "^1.0.0"
     simple-swizzle "^0.2.2"
 
+color-string@^1.5.4:
+  version "1.5.4"
+  resolved "https://registry.npm.taobao.org/color-string/download/color-string-1.5.4.tgz#dd51cd25cfee953d138fe4002372cc3d0e504cb6"
+  integrity sha1-3VHNJc/ulT0Tj+QAI3LMPQ5QTLY=
+  dependencies:
+    color-name "^1.0.0"
+    simple-swizzle "^0.2.2"
+
 color-support@^1.1.3:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/color-support/-/color-support-1.1.3.tgz#93834379a1cc9a0c61f82f52f0d04322251bd5a2"
@@ -2150,6 +2158,14 @@ color@^3.1.2:
   dependencies:
     color-convert "^1.9.1"
     color-string "^1.5.2"
+
+color@^3.1.3:
+  version "3.1.3"
+  resolved "https://registry.npm.taobao.org/color/download/color-3.1.3.tgz?cache=0&sync_timestamp=1602228725017&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcolor%2Fdownload%2Fcolor-3.1.3.tgz#ca67fb4e7b97d611dcde39eceed422067d91596e"
+  integrity sha1-ymf7TnuX1hHc3jns7tQiBn2RWW4=
+  dependencies:
+    color-convert "^1.9.1"
+    color-string "^1.5.4"
 
 colorette@^1.0.7:
   version "1.2.1"
@@ -5967,10 +5983,6 @@ react-native-gesture-handler@^1.8.0:
     invariant "^2.2.4"
     prop-types "^15.7.2"
 
-"react-native-gui@https://github.com/79percent/react-native-gui.git":
-  version "1.0.0"
-  resolved "https://github.com/79percent/react-native-gui.git#6ca3f28ec1a7f3bd73d208a4eb2ac295a126c99d"
-
 react-native-iphone-x-helper@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.2.1.tgz#645e2ffbbb49e80844bb4cbbe34a126fda1e6772"
@@ -6022,6 +6034,10 @@ react-native-swiper@^1.6.0:
   integrity sha512-OnkTTZi+9uZUgy0uz1I9oYDhCU3z36lZn+LFsk9FXPRelxb/KeABzvPs3r3SrHWy1aA67KGtSFj0xNK2QD0NJQ==
   dependencies:
     prop-types "^15.5.10"
+
+"react-native-ui@https://github.com/79percent/react-native-ui.git":
+  version "1.0.0"
+  resolved "https://github.com/79percent/react-native-ui.git#352938b0d0636107c4a60f8728edec344818f2a7"
 
 react-native-vector-icons@^7.1.0:
   version "7.1.0"

@@ -1,10 +1,7 @@
-import React, { Component, useState } from 'react';
-import { View, Text, Image, ScrollView, Platform } from 'react-native';
+import React, { Component } from 'react';
+import { View, Platform } from 'react-native';
 import { WebView } from 'react-native-webview';
-import {} from '../../utils';
-import { html, injectJSText, injectedJSText } from './utils';
 import styles from './styles';
-import htmlFile from './index.html';
 
 export default class BaiduMap extends Component {
   webViewRef = null;
@@ -12,8 +9,8 @@ export default class BaiduMap extends Component {
   render() {
     const baseUrl =
       Platform.OS === 'ios'
-        ? { uri: './index.html' }
-        : { uri: 'file:///android_asset/pages/index.html' };
+        ? { uri: './baiduMap.html' }
+        : { uri: 'file:///android_asset/pages/baiduMap/index.html' };
     return (
       <View style={styles.container}>
         <WebView

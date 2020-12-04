@@ -12,7 +12,7 @@ import {
   SafeAreaView,
   ActivityIndicator,
 } from 'react-native';
-import { Toast } from 'react-native-gui';
+import { Toast } from 'react-native-ui';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import styles from './styles';

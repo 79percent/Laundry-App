@@ -3,6 +3,7 @@ import { View, Text, Image, ScrollView, StatusBar } from 'react-native';
 import { pixelX } from '../../utils';
 import {} from './utils';
 import styles from './styles';
+import Echarts from '../../components/Echarts';
 
 export default function Range(props) {
   return (
@@ -16,7 +17,9 @@ export default function Range(props) {
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
       >
-        <Text>333</Text>
+        <View style={{ width: 350, height: 350 }}>
+          <Echarts />
+        </View>
       </ScrollView>
     </View>
   );
