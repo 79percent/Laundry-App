@@ -14,18 +14,25 @@ import AddOrderScreen from './src/pages/AddOrder';
 import IntroductionScreen from './src/pages/Introduction';
 import RangeScreen from './src/pages/Range';
 import PriceTableScreen from './src/pages/PriceTable';
+import MyNewsScreen from './src/pages/MyNews';
+import PersonalDataScreen from './src/pages/PersonalData';
+import StatisticsScreen from './src/pages/Statistics';
+import WalletScreen from './src/pages/Wallet';
+import SystemSettingsScreen from './src/pages/SystemSettings';
+import FeedbackScreen from './src/pages/Feedback';
+import AboutUsScreen from './src/pages/AboutUs';
 
 const Stack = createStackNavigator();
 
 // 未登录时的页面
 const authScreens = {
+  // 欢迎页面
   Welcome: {
-    // 欢迎页面
     component: WelcomeScreen,
     options: { headerShown: false },
   },
+  // 注册
   Register: {
-    // 注册
     component: RegisterScreen,
     options: {
       title: '',
@@ -38,8 +45,8 @@ const authScreens = {
       },
     },
   },
+  // 登录
   Login: {
-    // 登录
     component: LoginScreen,
     options: {
       title: '',
@@ -56,13 +63,13 @@ const authScreens = {
 
 // 已登录时的页面
 const userScreens = {
+  // 首页、订单、我的 Tab切换
   TabNavigator: {
-    // 首页、订单、我的 Tab切换
     component: TabNavigator,
     options: { headerShown: false },
   },
+  // 城市列表
   CityList: {
-    // 城市列表
     component: CityListScreen,
     options: {
       title: '城市列表',
@@ -75,8 +82,8 @@ const userScreens = {
       },
     },
   },
+  // 填写订单
   AddOrder: {
-    // 填写订单
     component: AddOrderScreen,
     options: {
       title: '填写订单',
@@ -86,8 +93,8 @@ const userScreens = {
       headerTintColor: '#fff',
     },
   },
+  // 服务介绍
   Introduction: {
-    // 服务介绍
     component: IntroductionScreen,
     options: {
       title: '服务介绍',
@@ -97,8 +104,8 @@ const userScreens = {
       headerTintColor: '#fff',
     },
   },
+  // 服务范围
   Range: {
-    // 服务范围
     component: RangeScreen,
     options: {
       title: '服务范围',
@@ -108,11 +115,88 @@ const userScreens = {
       headerTintColor: '#fff',
     },
   },
+  // 价格中心
   PriceTable: {
-    // 价格中心
     component: PriceTableScreen,
     options: {
       title: '价格中心',
+      headerStyle: {
+        backgroundColor: '#9DC6E0',
+      },
+      headerTintColor: '#fff',
+    },
+  },
+  // 我的消息
+  MyNews: {
+    component: MyNewsScreen,
+    options: {
+      title: '我的消息',
+      headerStyle: {
+        backgroundColor: '#9DC6E0',
+      },
+      headerTintColor: '#fff',
+    },
+  },
+  // 个人资料
+  PersonalData: {
+    component: PersonalDataScreen,
+    options: {
+      title: '个人资料',
+      headerStyle: {
+        backgroundColor: '#9DC6E0',
+      },
+      headerTintColor: '#fff',
+    },
+  },
+  // 订单统计
+  Statistics: {
+    component: StatisticsScreen,
+    options: {
+      title: '订单统计',
+      headerStyle: {
+        backgroundColor: '#9DC6E0',
+      },
+      headerTintColor: '#fff',
+    },
+  },
+  // 钱包管理
+  Wallet: {
+    component: WalletScreen,
+    options: {
+      title: '钱包管理',
+      headerStyle: {
+        backgroundColor: '#9DC6E0',
+      },
+      headerTintColor: '#fff',
+    },
+  },
+  // 系统设置
+  SystemSettings: {
+    component: SystemSettingsScreen,
+    options: {
+      title: '系统设置',
+      headerStyle: {
+        backgroundColor: '#9DC6E0',
+      },
+      headerTintColor: '#fff',
+    },
+  },
+  // 意见反馈
+  Feedback: {
+    component: FeedbackScreen,
+    options: {
+      title: '意见反馈',
+      headerStyle: {
+        backgroundColor: '#9DC6E0',
+      },
+      headerTintColor: '#fff',
+    },
+  },
+  // 关于我们
+  AboutUs: {
+    component: AboutUsScreen,
+    options: {
+      title: '关于我们',
       headerStyle: {
         backgroundColor: '#9DC6E0',
       },

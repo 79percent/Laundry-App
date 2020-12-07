@@ -19,6 +19,9 @@ import { block1List, settingList } from './utils';
 import avatar from '../../assets/img/logo.jpg';
 
 const Screen = ({ navigation, onLoginOut }) => {
+  const navigatePage = route => {
+    navigation.navigate(route);
+  };
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollView}>
@@ -53,6 +56,7 @@ const Screen = ({ navigation, onLoginOut }) => {
               <TouchableOpacity
                 activeOpacity={0.6}
                 key={item.key}
+                onPress={() => navigatePage(item.route)}
                 style={[
                   styles.sectionItem,
                   index === 0

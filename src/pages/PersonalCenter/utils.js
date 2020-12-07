@@ -36,11 +36,13 @@ export const settingList = [
     children: [
       {
         key: 'wdxx',
+        route: 'MyNews',
         label: '我的消息',
         icon: 'mail', // AntDesign
       },
       {
         key: 'grzl',
+        route: 'PersonalData',
         label: '个人资料',
         icon: 'contacts', // AntDesign
       },
@@ -51,6 +53,7 @@ export const settingList = [
     children: [
       {
         key: 'ddtj',
+        route: 'Statistics',
         label: '订单统计',
         icon: 'linechart', // AntDesign
       },
@@ -61,6 +64,7 @@ export const settingList = [
     children: [
       {
         key: 'yhkgl',
+        route: 'Wallet',
         label: '钱包管理',
         icon: 'wallet', // AntDesign
       },
@@ -71,11 +75,13 @@ export const settingList = [
     children: [
       {
         key: 'xtsz',
+        route: 'SystemSettings',
         label: '系统设置',
         icon: 'setting', // AntDesign
       },
       {
         key: 'yjfk',
+        route: 'Feedback',
         label: '意见反馈',
         icon: 'message1', // AntDesign
       },
@@ -86,6 +92,7 @@ export const settingList = [
     children: [
       {
         key: 'gywm',
+        route: 'AboutUs',
         label: '关于我们',
         icon: 'exclamationcircleo', // AntDesign
       },
