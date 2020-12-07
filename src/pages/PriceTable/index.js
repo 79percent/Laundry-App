@@ -14,60 +14,53 @@ import { routes } from './utils';
 
 const RoutePage = ({ data }) => {
   return (
-    <View
-      style={[
-        {
-          flex: 1,
-          backgroundColor: '#EAEAEA',
-          justifyContent: 'center',
-          alignItems: 'center',
-        },
-      ]}
-    >
-      <ScrollView style={{ flex: 1 }}>
-        <View>
-          {data.map(item => {
-            const { section, children } = item;
-            const { type, price, circle } = section;
-            return (
-              <View key={type}>
+    <View style={[styles.routePage]}>
+      <ScrollView style={styles.scrollView}>
+        {data.map((item, index) => {
+          const { section, children } = item;
+          const { type, price, circle } = section;
+          return (
+            <View key={index} style={styles.tableContent}>
+              <View style={styles.table}>
                 {/* 表头 */}
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    backgroundColor: 'skyblue',
-                  }}
-                >
-                  <Text>{type}</Text>
-                  <Text>{price}</Text>
-                  <Text>{circle}</Text>
+                <View style={styles.tableHeader}>
+                  <View style={styles.tableHeaderType}>
+                    <Text style={styles.tableHeaderText}>{type}</Text>
+                  </View>
+                  <View style={styles.tableHeaderPrice}>
+                    <Text style={styles.tableHeaderText}>{price}</Text>
+                  </View>
+                  <View style={styles.tableHeaderCircle}>
+                    <Text style={styles.tableHeaderText}>{circle}</Text>
+                  </View>
                 </View>
                 {/* 表内容 */}
-                <View>
-                  {children.map(child => {
-                    const { type, price, circle } = child;
-                    return (
-                      <View
-                        key={type}
-                        style={{
-                          flexDirection: 'row',
-                          justifyContent: 'space-between',
-                          alignItems: 'center',
-                        }}
-                      >
-                        <Text>{type}</Text>
-                        <Text>{price}</Text>
-                        <Text>{circle}</Text>
+                {children.map((child, index2) => {
+                  const { type, price, circle } = child;
+                  return (
+                    <View
+                      key={index2}
+                      style={[
+                        styles.tableRow,
+                        index2 === 0 ? null : styles.tableRowTopLine,
+                      ]}
+                    >
+                      <View style={styles.tableRowType}>
+                        <Text style={styles.tableRowText}>{type}</Text>
                       </View>
-                    );
-                  })}
-                </View>
+                      <View style={styles.tableRowPrice}>
+                        <Text style={styles.tableRowText}>{price}</Text>
+                      </View>
+                      <View style={styles.tableRowCircle}>
+                        <Text style={styles.tableRowText}>{circle}</Text>
+                      </View>
+                    </View>
+                  );
+                })}
               </View>
-            );
-          })}
-        </View>
+            </View>
+          );
+        })}
       </ScrollView>
     </View>
   );
@@ -75,13 +68,12 @@ const RoutePage = ({ data }) => {
 
 const initialLayout = { width: windowW };
 
-export default function TabViewExample() {
+export default function PriceTable() {
   const [index, setIndex] = React.useState(0);
   const renderScene = ({ route, jumpTo }) => {
     const { key, title, list } = route;
     return <RoutePage data={list} />;
   };
-
   return (
     <View style={styles.container}>
       <StatusBar
@@ -98,23 +90,18 @@ export default function TabViewExample() {
         // renderLazyPlaceholder={() => (
         //   <Text style={{ color: 'red' }}>loading...</Text>
         // )}
-        style={{ flex: 1 }}
+        style={styles.tabView}
         renderTabBar={props => (
           <TabBar
             {...props}
             scrollEnabled={true}
             bounces={true}
-            style={{ backgroundColor: '#fff' }}
+            style={styles.tabBar}
             activeColor="#9DC6E0"
             inactiveColor="#000"
-            indicatorStyle={{ backgroundColor: '#9DC6E0' }}
+            indicatorStyle={styles.indicatorStyle}
             indicatorContainerStyle={{}}
-            tabStyle={{
-              justifyContent: 'center',
-              alignItems: 'center',
-              paddingHorizontal: pixelX(20),
-              width: 'auto',
-            }}
+            tabStyle={styles.tabStyle}
           />
         )}
       />

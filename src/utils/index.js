@@ -15,10 +15,14 @@ export const isIphoneX = isIos && height >= 812;
 export const [baseWidth, baseHeight] = [375, 667];
 // 屏幕与设计稿的宽高比
 export const [wRatio, hRatio] = [width / baseWidth, height / baseHeight];
-// 宽度适配
+// 宽度适配(取整)
 export const pixelX = w => Math.round(w * wRatio);
-// 高度适配
+// 高度适配(取整)
 export const pixelY = h => Math.round(h * hRatio);
+// 宽度适配(浮点数)
+export const pixelX2 = w => w * wRatio;
+// 高度适配(浮点数)
+export const pixelY2 = h => h * hRatio;
 // 状态栏高度
 export const statusBarHeight = isIos ? (height >= 812 ? 44 : 20) : statusHeight;
 // 设置本地存储
@@ -101,9 +105,7 @@ export const debounce = (fn, waitTime) => {
  */
 export const convertRadix = (str = '', prevRadix = 10, nowRadix = 10, len) => {
   if (len) {
-    return parseInt(`${str}`, prevRadix)
-      .toString(nowRadix)
-      .padStart(len, '0');
+    return parseInt(`${str}`, prevRadix).toString(nowRadix).padStart(len, '0');
   }
   return parseInt(`${str}`, prevRadix).toString(nowRadix);
 };
