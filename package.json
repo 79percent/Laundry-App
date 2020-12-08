@@ -23,6 +23,7 @@
     "prop-types": "^15.7.2",
     "react": "16.13.1",
     "react-native": "0.63.3",
+    "react-native-calendar-select": "^0.1.2",
     "react-native-geolocation-service": "^5.0.0",
     "react-native-gesture-handler": "^1.8.0",
     "react-native-gui": "https://github.com.cnpmjs.org/79percent/react-native-ui.git",
