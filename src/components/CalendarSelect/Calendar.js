@@ -5,117 +5,22 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import {
-  View,
-  Text,
-  Modal,
-  Image,
-  StyleSheet,
-  ScrollView,
-  Dimensions,
-  TouchableHighlight,
-} from 'react-native';
-import Moment from 'moment';
+import { View, Text, Modal, Image, TouchableHighlight } from 'react-native';
+import moment from 'moment';
 import styles from './CalendarStyle';
-import MonthList from './MonthList';
+// import MonthList from './MonthList';
 
 const ICON = {
   close:
     'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAADGklEQVR4Xu3b3XXTMBTAcV1Leu8I3YAyAWECygSlE9BOQJmAdAK6QWGCphNQNmAE+mzZl6Mc5xzXtiLJ1r0STfLqJM3/Z9muPwTiwF9w4P3iCHAcAQ4BRDxt2/aDEOKkqqqfAPD0P2EZYy6EEJ/sbwaATVVVtwDwd9gwuQkYY+wHv9n43QcQca21vi4dARFPmqa5F0Ks+r8VEZ+UUu+HCCMAu+abpvnVj+990Z1S6rJUBBtvjHkAgLOp34iIX7XWN/1lI4Cmaa4Q0a5916tIBF+8jUHER631i5ExAqjr+gYAvnjWclEIIfHBAIh41m0CvpFeBEJofBdzqZS627sJ2IV1Xa8B4LNPQAiRFSEmfmr4b48QrkhjjJWyhxLfKwtCZPxvpdQq+DC4Ky4VIVX83hFQKkLK+CAA+6ZSRkLq+GCAEhAo4qMAciJQxUcD5ECgjJ8FwIlAHT8bgAOBI34RACUCV/xiAAoEzvgkACkRuOOTAaRAyBGfFGAJQq745ABzEHLGkwDEItgLMK5reP3zcER0ntL6ztf3LSe7MRJxAuX9/VTxZCNgxqm0E4EynhwgcnMYIVDHswDMReCIZwOIReCKZwOIOdR12wHbhVayo8Bug54Rv/soCwIpwIJ4NgQygATxLAgkAAnjyRGSA8TE27199+BFtjtQSQFi43e3qyL+bU6+Y0wGMDd+xr/NSRGSACyNz4mwGCBVfC6ERQCp43MgzAagiudGmAVAHc+JEA3AFc+FEAXAHc+BEAyQK54aIQggdzwlgheglHgqhL0ApcVTIDgBSo1PjTAJUHp8SgTXfIGH4fP2U3cuOK/euu6chJ5KI+Kt1vpq+D0jgG6yxHfnrZpuQQnxsSNBSvl2OPNl6nH5DQC82wdQUnwMAgBcSynX/bZogBLjIxA+KqV++ACcEyZKjg9AeJZSnobMGbLzbuxm8KYvZZ+3V0qdTz1y7ttfcC+fmO/wjIjnWuuNdydo39AdBu0eczu/BgDsdbgXMy24o2L/nn3wom3bFSL+kVLaFTqaMrdti/3i1/b+I8BrW6OxPQc/Av4BDSZYbnPWwJkAAAAASUVORK5CYII=',
 };
 export default class Calendar extends Component {
-  static propTypes = {
-    i18n: PropTypes.string,
-    format: PropTypes.string,
-    customI18n: PropTypes.object,
-    color: PropTypes.object,
-    minDate: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.instanceOf(Date),
-    ]),
-    maxDate: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.instanceOf(Date),
-    ]),
-  };
-  static defaultProps = {
-    format: 'YYYY-MM-DD',
-    i18n: 'en',
-    customI18n: {},
-    color: {},
-  };
-  static I18N_MAP = {
-    zh: {
-      w: ['', '一', '二', '三', '四', '五', '六', '日'],
-      weekday: [
-        '',
-        '星期一',
-        '星期二',
-        '星期三',
-        '星期四',
-        '星期五',
-        '星期六',
-        '星期日',
-      ],
-      text: {
-        start: '开 始',
-        end: '结 束',
-        date: '日 期',
-        save: '保 存',
-        clear: '清除',
-      },
-      date: 'M月D日',
-    },
-    en: {
-      w: ['', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'],
-      weekday: [
-        '',
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thursday',
-        'Friday',
-        'Saturday',
-        'Sunday',
-      ],
-      text: {
-        start: 'Start',
-        end: 'End',
-        date: 'Date',
-        save: 'Save',
-        clear: 'Reset',
-      },
-      date: 'DD / MM',
-    },
-    jp: {
-      w: ['', '月', '火', '水', '木', '金', '土', '日'],
-      weekday: [
-        '',
-        '月曜日',
-        '火曜日',
-        '水曜日',
-        '木曜日',
-        '金曜日',
-        '土曜日',
-        '日曜日',
-      ],
-      text: {
-        start: 'スタート',
-        end: 'エンド',
-        date: '時　間',
-        save: '確　認',
-        clear: 'クリア',
-      },
-      date: 'M月D日',
-    },
-  };
-
   constructor(props) {
     super(props);
     this.state = {
       isModalVisible: false,
     };
-    this._today = Moment();
+    this._today = moment();
     this._year = this._today.year();
     this._i18n = this._i18n.bind(this);
     this._getDateRange = this._getDateRange.bind(this);
@@ -147,8 +52,8 @@ export default class Calendar extends Component {
 
   _resetCalendar() {
     const { startDate, endDate, format } = this.props;
-    const start = Moment(startDate, format);
-    const end = Moment(endDate, format);
+    const start = moment(startDate, format);
+    const end = moment(endDate, format);
     const isStartValid =
       start.isValid() && start >= this._minDate && start <= this._maxDate;
     const isEndValid =
@@ -167,13 +72,13 @@ export default class Calendar extends Component {
 
   _getDateRange() {
     const { maxDate, minDate, format } = this.props;
-    let max = Moment(maxDate, format);
-    let min = Moment(minDate, format);
+    let max = moment(maxDate, format);
+    let min = moment(minDate, format);
     const maxValid = max.isValid();
     const minValid = min.isValid();
     if (!maxValid && !minValid) {
-      max = Moment().add(3, 'months');
-      min = Moment();
+      max = moment().add(3, 'months');
+      min = moment();
     }
     if (!maxValid && minValid) {
       max = min.add(3, 'months');
@@ -285,7 +190,6 @@ export default class Calendar extends Component {
                 style={styles.closeIcon}
                 source={{ uri: ICON.close }}
                 resizeMode="cover"
-             
               />
             </TouchableHighlight>
             {isClearVisible && (
@@ -293,12 +197,12 @@ export default class Calendar extends Component {
                 underlayColor="transparent"
                 activeOpacity={0.8}
                 onPress={this.clear}
-              
-            >
+              >
                 <Text style={[styles.clearText, subFontColor]}>
                   {this._i18n('clear', 'text')}
                 </Text>
-                               </TouchableHighlight>}
+              </TouchableHighlight>
+            )}
           </View>
           <View style={styles.result}>
             <View style={styles.resultPart}>
@@ -327,7 +231,7 @@ export default class Calendar extends Component {
             ))}
           </View>
           <View style={[styles.scroll, { borderColor }]}>
-            <MonthList
+            {/* <MonthList
               today={this._today}
               minDate={this._minDate}
               maxDate={this._maxDate}
@@ -336,7 +240,7 @@ export default class Calendar extends Component {
               onChoose={this._onChoose}
               i18n={this.props.i18n}
               color={color}
-            />
+            /> */}
           </View>
           <View style={styles.btn}>
             {isValid ? (
@@ -348,7 +252,7 @@ export default class Calendar extends Component {
                 <View style={styles.confirmBtn}>
                   <Text
                     ellipsisMode="tail"
-numberOfLines={1}
+                    numberOfLines={1}
                     style={[styles.confirmText, subFontColor]}
                   >
                     {this._i18n('save', 'text')}
@@ -365,16 +269,99 @@ numberOfLines={1}
                 <View style={styles.confirmBtn}>
                   <Text
                     ellipsisMode="tail"
-numberOfLines={1}
+                    numberOfLines={1}
                     style={[styles.confirmText, styles.confirmTextDisabled]}
                   >
                     {this._i18n('save', 'text')}
                   </Text>
                 </View>
-              </View>)}
+              </View>
+            )}
           </View>
         </View>
       </Modal>
     );
   }
 }
+
+Calendar.propTypes = {
+  i18n: PropTypes.string,
+  format: PropTypes.string,
+  customI18n: PropTypes.object,
+  color: PropTypes.object,
+  minDate: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
+  maxDate: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
+};
+
+Calendar.defaultProps = {
+  format: 'YYYY-MM-DD',
+  i18n: 'en',
+  customI18n: {},
+  color: {},
+};
+
+Calendar.I18N_MAP = {
+  zh: {
+    w: ['', '一', '二', '三', '四', '五', '六', '日'],
+    weekday: [
+      '',
+      '星期一',
+      '星期二',
+      '星期三',
+      '星期四',
+      '星期五',
+      '星期六',
+      '星期日',
+    ],
+    text: {
+      start: '开 始',
+      end: '结 束',
+      date: '日 期',
+      save: '保 存',
+      clear: '清除',
+    },
+    date: 'M月D日',
+  },
+  en: {
+    w: ['', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'],
+    weekday: [
+      '',
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+      'Sunday',
+    ],
+    text: {
+      start: 'Start',
+      end: 'End',
+      date: 'Date',
+      save: 'Save',
+      clear: 'Reset',
+    },
+    date: 'DD / MM',
+  },
+  jp: {
+    w: ['', '月', '火', '水', '木', '金', '土', '日'],
+    weekday: [
+      '',
+      '月曜日',
+      '火曜日',
+      '水曜日',
+      '木曜日',
+      '金曜日',
+      '土曜日',
+      '日曜日',
+    ],
+    text: {
+      start: 'スタート',
+      end: 'エンド',
+      date: '時　間',
+      save: '確　認',
+      clear: 'クリア',
+    },
+    date: 'M月D日',
+  },
+};

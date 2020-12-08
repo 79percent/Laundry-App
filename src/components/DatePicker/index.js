@@ -9,8 +9,8 @@ import {
   Image,
   ScrollView,
 } from 'react-native';
-import Calendar from 'react-native-calendar-select';
 import { connect } from 'react-redux';
+import Calendar from '../CalendarSelect';
 import { windowW } from '../../utils';
 import styles from './styles';
 import {} from './utils';
@@ -68,11 +68,11 @@ export default function DatePicker(props) {
         </View>
       </TouchableOpacity>
       <Calendar
-        i18n="en"
+        i18n="zh"
         ref={ref => {
           calendar = ref;
         }}
-        customI18n={customI18n}
+        // customI18n={customI18n}
         color={color}
         format="YYYYMMDD"
         minDate="20170510"
