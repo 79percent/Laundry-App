@@ -12,6 +12,7 @@ import {
 import { connect } from 'react-redux';
 import Antv from '../../components/AntV';
 import DatePicker from '../../components/DatePicker';
+import CalendarModal from '../../components/CalendarModal';
 import { windowW } from '../../utils';
 import styles from './styles';
 import {} from './utils';
