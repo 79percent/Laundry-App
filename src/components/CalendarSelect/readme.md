@@ -1,1 +1,0 @@
-https://github.com/Tinysymphony/react-native-calendar-select

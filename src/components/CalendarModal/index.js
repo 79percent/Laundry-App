@@ -3,152 +3,92 @@ import {
   View,
   Text,
   StatusBar,
-  TextInput,
   TouchableOpacity,
-  TouchableHighlight,
-  Image,
   ScrollView,
   Modal,
   Alert,
-  Button,
 } from 'react-native';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import styles from './styles';
-import {} from './utils';
+import { i18nMap, defaultMinDate, defaultMaxDate, getMonthList } from './utils';
 import { pixelX, windowH, windowW } from '../../utils';
-
-moment.locale('zh-cn', {
-  months: '一月_二月_三月_四月_五月_六月_七月_八月_九月_十月_十一月_十二月'.split(
-    '_'
-  ),
-  monthsShort: '1月_2月_3月_4月_5月_6月_7月_8月_9月_10月_11月_12月'.split('_'),
-  weekdays: '星期日_星期一_星期二_星期三_星期四_星期五_星期六'.split('_'),
-  weekdaysShort: '周日_周一_周二_周三_周四_周五_周六'.split('_'),
-  weekdaysMin: '日_一_二_三_四_五_六'.split('_'),
-  longDateFormat: {
-    LT: 'HH:mm',
-    LTS: 'HH:mm:ss',
-    L: 'YYYY-MM-DD',
-    LL: 'YYYY年MM月DD日',
-    LLL: 'YYYY年MM月DD日Ah点mm分',
-    LLLL: 'YYYY年MM月DD日ddddAh点mm分',
-    l: 'YYYY-M-D',
-    ll: 'YYYY年M月D日',
-    lll: 'YYYY年M月D日 HH:mm',
-    llll: 'YYYY年M月D日dddd HH:mm',
-  },
-  meridiemParse: /凌晨|早上|上午|中午|下午|晚上/,
-  meridiemHour(hour, meridiem) {
-    if (hour === 12) {
-      hour = 0;
-    }
-    if (meridiem === '凌晨' || meridiem === '早上' || meridiem === '上午') {
-      return hour;
-    }
-    if (meridiem === '下午' || meridiem === '晚上') {
-      return hour + 12;
-    }
-    // '中午'
-    return hour >= 11 ? hour : hour + 12;
-  },
-  meridiem(hour, minute, isLower) {
-    const hm = hour * 100 + minute;
-    if (hm < 600) {
-      return '凌晨';
-    }
-    if (hm < 900) {
-      return '早上';
-    }
-    if (hm < 1130) {
-      return '上午';
-    }
-    if (hm < 1230) {
-      return '中午';
-    }
-    if (hm < 1800) {
-      return '下午';
-    }
-    return '晚上';
-  },
-  calendar: {
-    sameDay: '[今天]LT',
-    nextDay: '[明天]LT',
-    nextWeek: '[下]ddddLT',
-    lastDay: '[昨天]LT',
-    lastWeek: '[上]ddddLT',
-    sameElse: 'L',
-  },
-  dayOfMonthOrdinalParse: /\d{1,2}(日|月|周)/,
-  ordinal(number, period) {
-    switch (period) {
-      case 'd':
-      case 'D':
-      case 'DDD':
-        return `${number}日`;
-      case 'M':
-        return `${number}月`;
-      case 'w':
-      case 'W':
-        return `${number}周`;
-      default:
-        return number;
-    }
-  },
-  relativeTime: {
-    future: '%s内',
-    past: '%s前',
-    s: '几秒',
-    ss: '%d秒',
-    m: '1分钟',
-    mm: '%d分钟',
-    h: '1小时',
-    hh: '%d小时',
-    d: '1天',
-    dd: '%d天',
-    M: '1个月',
-    MM: '%d个月',
-    y: '1年',
-    yy: '%d年',
-  },
-  week: {
-    // GB/T 7408-1994《数据元和交换格式·信息交换·日期和时间表示法》与ISO 8601:1988等效
-    dow: 1, // Monday is the first day of the week.
-    doy: 4, // The week that contains Jan 4th is the first week of the year.
-  },
-});
-
-const i18nMap = {
-  zh: {
-    clear: '清除',
-    startTime: '开始时间',
-    endTime: '结束时间',
-    week: ['日', '一', '二', '三', '四', '五', '六'],
-    save: '保存',
-  },
-};
 
 export default function CalendarModal({
   visible,
   onChangeVisible,
-  lang = 'zh',
-  minDate: '20190101',
-  maxDate: '20201231',
+  lang,
+  minDate,
+  maxDate,
+  format,
+  onClose,
+  onClear,
+  onSelect,
+  onSave,
+  startDate,
+  endDate,
 }) {
   const i18n = i18nMap[lang];
-  const { clear, startTime, endTime, week, save } = i18n;
+  const { clear, startTime, endTime, week, save, month, weekdays } = i18n;
   const [modalVisible, setModalVisible] = useState(visible);
-  const [start, setStart] = useState(moment());
-  const [end, setEnd] = useState(moment());
+  const [start, setStart] = useState(startDate);
+  const [end, setEnd] = useState(endDate);
+  const [monthList, setMonthList] = useState([]);
   // backhandle
   const handleRequestClose = () => {
     setModalVisible(!modalVisible);
     onChangeVisible(!modalVisible);
+    onClose();
+  };
+  // 点击保存
+  const handleSave = () => {
+    Alert.alert('', `${start} , ${end}`);
+    onSave(start, end);
+  };
+  // 点击日历上的日期
+  const handlePressDay = d => {
+    const date = moment(d);
+    const formatDate = date.format('YYYYMMDD');
+    let startTime, endTime;
+    if (!start) {
+      startTime = formatDate;
+      endTime = null;
+      setStart(formatDate);
+    } else if (!end) {
+      if (start > formatDate) {
+        setEnd(start);
+        setStart(formatDate);
+        startTime = formatDate;
+        endTime = start;
+      } else {
+        setEnd(formatDate);
+        startTime = start;
+        endTime = formatDate;
+      }
+    } else {
+      startTime = null;
+      endTime = null;
+      setStart(null);
+      setEnd(null);
+    }
+    onSelect(startTime, endTime);
+  };
+  // 点击清除
+  const handleClear = () => {
+    setStart(null);
+    setEnd(null);
+    onClear();
   };
   useEffect(() => {
     setModalVisible(visible);
-  }, [visible]);
+    setStart(startDate);
+    setEnd(endDate);
+  }, [visible, startDate, endDate]);
+  useEffect(() => {
+    const monthArr = getMonthList(minDate, maxDate, month);
+    setMonthList(monthArr);
+  }, []);
   return (
     <Modal
       animationType="slide"
@@ -167,7 +107,7 @@ export default function CalendarModal({
           >
             <AntDesign name="close" size={pixelX(40)} color="#fff" />
           </TouchableOpacity>
-          <TouchableOpacity activeOpacity={0.6}>
+          <TouchableOpacity activeOpacity={0.6} onPress={handleClear}>
             <Text style={styles.block1ClearText}>{clear}</Text>
           </TouchableOpacity>
         </View>
@@ -176,10 +116,10 @@ export default function CalendarModal({
           <View style={styles.block2Left}>
             <Text style={styles.block2Text1}>{startTime}</Text>
             <Text style={styles.block2Text2}>
-              {(start && start.format('ll')) || ''}
+              {(start && moment(start).format(format)) || ''}
             </Text>
             <Text style={styles.block2Text3}>
-              {(start && start.format('dddd')) || ''}
+              {(start && weekdays[moment(start).day()]) || ''}
             </Text>
           </View>
           <View style={styles.block2Center}>
@@ -188,10 +128,10 @@ export default function CalendarModal({
           <View style={styles.block2Right}>
             <Text style={styles.block2Text1}>{endTime}</Text>
             <Text style={styles.block2Text2}>
-              {(end && end.format('ll')) || ''}
+              {(end && moment(end).format(format)) || ''}
             </Text>
             <Text style={styles.block2Text3}>
-              {(end && end.format('dddd')) || ''}
+              {(end && weekdays[moment(end).day()]) || ''}
             </Text>
           </View>
         </View>
@@ -216,35 +156,70 @@ export default function CalendarModal({
             style={styles.scrollView}
             showsVerticalScrollIndicator={false}
           >
-            <View
-              style={{
-                width: windowW,
-                height: (windowH - StatusBar.currentHeight) * (8 / 13.5),
-              }}
-            >
-              <View style={styles.month}>
-                <Text style={styles.monthText}>十二月</Text>
-              </View>
-              <View style={styles.day}>
-                {new Array(30)
-                  .fill(0)
-                  .map((_, i) => i + 1)
-                  .map(item => (
-                    <TouchableOpacity
-                      key={item}
-                      activeOpacity={0.6}
-                      style={styles.dayItem}
-                    >
-                      <Text style={styles.dayItemText}>{item}</Text>
-                    </TouchableOpacity>
-                  ))}
-              </View>
-            </View>
+            {monthList.map((item, index) => {
+              const { month, days } = item;
+              return (
+                <View
+                  key={index}
+                  style={{
+                    width: windowW,
+                    height:
+                      (windowH - StatusBar.currentHeight) * (7 / (5.5 + 7)),
+                  }}
+                >
+                  <View style={styles.month}>
+                    <Text style={styles.monthText}>{month}</Text>
+                  </View>
+                  <View style={styles.day}>
+                    {days.map((item2, index2) => {
+                      if (item2 === null) {
+                        return <View key={index2} style={styles.dayItem} />;
+                      }
+                      const { day, date } = item2;
+                      let textStyle, otherStyle;
+                      if (
+                        (date === start && date === end) ||
+                        (date === start && !end) ||
+                        (date === end && !start)
+                      ) {
+                        otherStyle = styles.choosedSingle;
+                        textStyle = styles.choosedDayItem;
+                      } else if (start && end && start < date && date < end) {
+                        otherStyle = styles.choosedInner;
+                        textStyle = styles.choosedDayItem;
+                      } else if (start && end && start === date) {
+                        otherStyle = styles.choosedStart;
+                        textStyle = styles.choosedDayItem;
+                      } else if (start && end && end === date) {
+                        otherStyle = styles.choosedEnd;
+                        textStyle = styles.choosedDayItem;
+                      }
+                      return (
+                        <TouchableOpacity
+                          key={index2}
+                          activeOpacity={1}
+                          style={[styles.dayItem, otherStyle]}
+                          onPress={() => handlePressDay(date)}
+                        >
+                          <Text style={[styles.dayItemText, textStyle]}>
+                            {day}
+                          </Text>
+                        </TouchableOpacity>
+                      );
+                    })}
+                  </View>
+                </View>
+              );
+            })}
           </ScrollView>
         </View>
         {/* 保存按钮 */}
         <View style={styles.block5}>
-          <TouchableOpacity style={styles.block5Button} activeOpacity={0.6}>
+          <TouchableOpacity
+            style={styles.block5Button}
+            activeOpacity={0.6}
+            onPress={handleSave}
+          >
             <Text style={styles.block5ButtonText}>{save}</Text>
           </TouchableOpacity>
         </View>
@@ -254,11 +229,31 @@ export default function CalendarModal({
 }
 
 CalendarModal.propTypes = {
-  visible: PropTypes.bool.isRequired,
-  onChangeVisible: PropTypes.func.isRequired,
-  lang: PropTypes.func,
+  visible: PropTypes.bool, // 弹窗显示隐藏
+  onChangeVisible: PropTypes.func, // 弹窗显示隐藏事件
+  onClose: PropTypes.func, // 弹窗关闭事件
+  onClear: PropTypes.func, // 清除事件
+  onSelect: PropTypes.func, // 日期选择事件
+  onSave: PropTypes.func, // 保存事件
+  lang: PropTypes.string, // 语言，zh OR en
+  minDate: PropTypes.string, // 日历最小日期
+  maxDate: PropTypes.string, // 日历最大日期
+  startDate: PropTypes.string, // 选中的开始时间
+  endDate: PropTypes.string, // 选中的结束时间
+  format: PropTypes.string, // 时间显示格式
 };
 
 CalendarModal.defaultProps = {
+  visible: false,
+  onChangeVisible: visible => {},
+  onClose: () => {},
+  onClear: () => {},
+  onSelect: (start, end) => {},
+  onSave: (start, end) => {},
   lang: 'zh',
+  minDate: defaultMinDate,
+  maxDate: defaultMaxDate,
+  startDate: null,
+  endDate: null,
+  format: 'YYYY年MM月DD日',
 };

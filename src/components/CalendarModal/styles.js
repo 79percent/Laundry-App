@@ -69,7 +69,7 @@ export default StyleSheet.create({
     borderBottomWidth: pixelX(1),
   },
   block4: {
-    flex: 8,
+    flex: 7,
     borderBottomColor: '#fff',
     borderBottomWidth: pixelX(1),
   },
@@ -83,12 +83,31 @@ export default StyleSheet.create({
   monthText: { fontSize: pixelX(24), color: '#fff' },
   day: { flex: 5, flexDirection: 'row', flexWrap: 'wrap' },
   dayItem: {
-    width: '14.2857%',
-    height: pixelX(60),
+    width: windowW / 7,
+    height: windowW / 7,
     justifyContent: 'center',
     alignItems: 'center',
+    marginVertical: pixelX(5),
   },
   dayItemText: { fontSize: pixelX(16), color: '#fff' },
+  choosedDayItem: { fontSize: pixelX(16), color: '#000' },
+  choosedStart: {
+    borderTopLeftRadius: pixelX(windowW / 14),
+    borderBottomLeftRadius: pixelX(windowW / 14),
+    backgroundColor: '#fff',
+  },
+  choosedEnd: {
+    borderTopRightRadius: pixelX(windowW / 14),
+    borderBottomRightRadius: pixelX(windowW / 14),
+    backgroundColor: '#fff',
+  },
+  choosedInner: {
+    backgroundColor: '#fff',
+  },
+  choosedSingle: {
+    borderRadius: pixelX(30),
+    backgroundColor: '#fff',
+  },
   scrollView: { flex: 1 },
   block5: {
     flex: 1,
