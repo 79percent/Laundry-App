@@ -71,8 +71,8 @@ const styles = StyleSheet.create({
     color: '#333',
   },
   block4ItemImg: {
-    width: pixelY(80),
-    height: pixelY(80),
+    width: pixelX(80),
+    height: pixelX(80),
   },
   block5: {
     width: '100%',

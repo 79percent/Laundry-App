@@ -107,16 +107,16 @@ const ListFooterComponent = ({ animating, isNoMore }) => {
       color="#007ACC"
     />
   ) : (
-    <View
-      style={{
-        height: pixelY(60),
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      <Text style={{ color: '#000', fontSize: pixelX(14) }}>没有更多了</Text>
-    </View>
-  );
+      <View
+        style={{
+          height: pixelY(60),
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <Text style={{ color: '#000', fontSize: pixelX(14) }}>没有更多了</Text>
+      </View>
+    );
 };
 
 export default function OrderScreen() {
@@ -155,8 +155,10 @@ export default function OrderScreen() {
   };
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar backgroundColor="#fff" barStyle="dark-content" />
       <HeaderComponent />
       <FlatList
+        style={{ flex: 1, backgroundColor: '#EAEAEA', }}
         data={dataList}
         keyExtractor={(item, index) => index}
         renderItem={renderItem}

@@ -6,7 +6,7 @@ const imgWH = (pixelY(160) - pixelX(10)) * (3 / 5.5);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#EAEAEA',
+    backgroundColor: '#fff',
   },
   itemBox: {
     width: '100%',
