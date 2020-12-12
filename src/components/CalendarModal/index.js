@@ -7,6 +7,7 @@ import {
   ScrollView,
   Modal,
   Alert,
+  SafeAreaView,
 } from 'react-native';
 import moment from 'moment';
 import PropTypes from 'prop-types';
@@ -95,7 +96,7 @@ export default function CalendarModal({
       visible={modalVisible}
       onRequestClose={handleRequestClose}
     >
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         {/* 关闭× & 清除 */}
         <View style={styles.block1}>
           <TouchableOpacity
@@ -223,7 +224,7 @@ export default function CalendarModal({
             <Text style={styles.block5ButtonText}>{save}</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </SafeAreaView>
     </Modal>
   );
 }
@@ -245,11 +246,11 @@ CalendarModal.propTypes = {
 
 CalendarModal.defaultProps = {
   visible: false,
-  onChangeVisible: visible => {},
-  onClose: () => {},
-  onClear: () => {},
-  onSelect: (start, end) => {},
-  onSave: (start, end) => {},
+  onChangeVisible: visible => { },
+  onClose: () => { },
+  onClear: () => { },
+  onSelect: (start, end) => { },
+  onSave: (start, end) => { },
   lang: 'zh',
   minDate: defaultMinDate,
   maxDate: defaultMaxDate,
