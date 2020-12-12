@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
   },
   footer: {
     width: '100%',
-    height: pixelY(60),
+    height: pixelY(80),
     justifyContent: 'center',
     alignItems: 'center',
   },
