@@ -6,11 +6,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#E3E0E0',
+    backgroundColor: '#fff',
   },
   scrollView: {
     width: '100%',
     flex: 1,
+    backgroundColor: '#E3E0E0',
   },
   avatarBox: {
     justifyContent: 'center',
@@ -50,6 +51,7 @@ const styles = StyleSheet.create({
     height: pixelY(310),
     paddingBottom: pixelY(50),
     position: 'relative',
+    backgroundColor: '#E3E0E0',
   },
   block1: {
     width: windowW - pixelX(20),
@@ -64,6 +66,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    shadowColor: '#ccc',
+    shadowOffset: { width: pixelX(0), height: pixelX(3) },
+    shadowOpacity: 1,
+    shadowRadius: pixelX(5),
   },
   block1Item: {
     flex: 1,
@@ -127,15 +133,21 @@ const styles = StyleSheet.create({
   },
   footer: {
     width: '100%',
-    height: pixelY(60),
+    height: pixelY(80),
     justifyContent: 'center',
     alignItems: 'center',
   },
   footerBtn: {
     backgroundColor: '#F76262',
-    paddingHorizontal: pixelX(80),
-    paddingVertical: pixelX(10),
+    width: pixelX(260),
+    height: pixelX(50),
     borderRadius: pixelX(10),
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#F76262',
+    shadowOffset: { width: pixelX(0), height: pixelX(0) },
+    shadowOpacity: 0.6,
+    shadowRadius: pixelX(3),
   },
   footerBtnText: {
     fontSize: pixelX(16),

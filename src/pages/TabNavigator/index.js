@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import { pixelY } from '../../utils';
+import { pixelY, pixelX } from '../../utils';
 import HomeScreen from '../Home';
 import OrderScreen from '../Order';
 import PersonalCenter from '../PersonalCenter';
@@ -28,7 +28,7 @@ export default function TabNavigator() {
               iconName = 'question';
               break;
           }
-          return <AntDesign name={iconName} size={pixelY(26)} color={color} />;
+          return <AntDesign name={iconName} size={pixelX(26)} color={color} />;
         },
       })}
       tabBarOptions={{

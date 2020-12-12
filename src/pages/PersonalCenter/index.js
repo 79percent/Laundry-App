@@ -8,6 +8,7 @@ import {
   Button,
   Image,
   ScrollView,
+  SafeAreaView,
 } from 'react-native';
 import { connect } from 'react-redux';
 import Feather from 'react-native-vector-icons/Feather';
@@ -23,8 +24,11 @@ const Screen = ({ navigation, onLoginOut }) => {
     navigation.navigate(route);
   };
   return (
-    <View style={styles.container}>
-      <ScrollView style={styles.scrollView}>
+    <SafeAreaView style={styles.container}>
+      <ScrollView
+        style={styles.scrollView}
+        showsVerticalScrollIndicator={false}
+      >
         <View style={styles.block}>
           <View style={styles.avatarBox}>
             <Image source={avatar} style={styles.avatar} />
@@ -90,7 +94,7 @@ const Screen = ({ navigation, onLoginOut }) => {
           </TouchableOpacity>
         </View>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 };
 

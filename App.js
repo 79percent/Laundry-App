@@ -36,6 +36,7 @@ const authScreens = {
     component: RegisterScreen,
     options: {
       title: '',
+      headerBackTitle: ' ',
       headerStyle: {
         backgroundColor: '#fff',
       },
@@ -50,6 +51,7 @@ const authScreens = {
     component: LoginScreen,
     options: {
       title: '',
+      headerBackTitle: ' ',
       headerStyle: {
         backgroundColor: '#fff',
       },
@@ -73,6 +75,7 @@ const userScreens = {
     component: CityListScreen,
     options: {
       title: '城市列表',
+      headerBackTitle: ' ',
       headerStyle: {
         backgroundColor: '#fff',
       },
@@ -87,6 +90,7 @@ const userScreens = {
     component: AddOrderScreen,
     options: {
       title: '填写订单',
+      headerBackTitle: ' ',
       headerStyle: {
         backgroundColor: '#9DC6E0',
       },
@@ -98,6 +102,7 @@ const userScreens = {
     component: IntroductionScreen,
     options: {
       title: '服务介绍',
+      headerBackTitle: ' ',
       headerStyle: {
         backgroundColor: '#9DC6E0',
       },
@@ -109,6 +114,7 @@ const userScreens = {
     component: RangeScreen,
     options: {
       title: '服务范围',
+      headerBackTitle: ' ',
       headerStyle: {
         backgroundColor: '#9DC6E0',
       },
@@ -120,6 +126,7 @@ const userScreens = {
     component: PriceTableScreen,
     options: {
       title: '价格中心',
+      headerBackTitle: ' ',
       headerStyle: {
         backgroundColor: '#9DC6E0',
       },
@@ -131,6 +138,7 @@ const userScreens = {
     component: MyNewsScreen,
     options: {
       title: '我的消息',
+      headerBackTitle: ' ',
       headerStyle: {
         backgroundColor: '#9DC6E0',
       },
@@ -142,6 +150,7 @@ const userScreens = {
     component: PersonalDataScreen,
     options: {
       title: '个人资料',
+      headerBackTitle: ' ',
       headerStyle: {
         backgroundColor: '#9DC6E0',
       },
@@ -153,6 +162,7 @@ const userScreens = {
     component: StatisticsScreen,
     options: {
       title: '订单统计',
+      headerBackTitle: ' ',
       headerStyle: {
         backgroundColor: '#9DC6E0',
       },
@@ -164,6 +174,7 @@ const userScreens = {
     component: WalletScreen,
     options: {
       title: '钱包管理',
+      headerBackTitle: ' ',
       headerStyle: {
         backgroundColor: '#9DC6E0',
       },
@@ -175,6 +186,7 @@ const userScreens = {
     component: SystemSettingsScreen,
     options: {
       title: '系统设置',
+      headerBackTitle: ' ',
       headerStyle: {
         backgroundColor: '#9DC6E0',
       },
@@ -186,6 +198,7 @@ const userScreens = {
     component: FeedbackScreen,
     options: {
       title: '意见反馈',
+      headerBackTitle: ' ',
       headerStyle: {
         backgroundColor: '#9DC6E0',
       },
@@ -197,6 +210,7 @@ const userScreens = {
     component: AboutUsScreen,
     options: {
       title: '关于我们',
+      headerBackTitle: ' ',
       headerStyle: {
         backgroundColor: '#9DC6E0',
       },

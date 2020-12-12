@@ -8,6 +8,7 @@ import {
   ScrollView,
   Image,
   ImageBackground,
+  SafeAreaView,
 } from 'react-native';
 import { connect } from 'react-redux';
 import Geolocation from '@react-native-community/geolocation';
@@ -75,7 +76,7 @@ const Screen = ({ navigation, home, onSave }) => {
     navigation.navigate(route);
   };
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor="#fff" barStyle="dark-content" />
       {/* 所在城市 */}
       <View style={styles.block1}>
@@ -88,7 +89,7 @@ const Screen = ({ navigation, home, onSave }) => {
           <FontAwesome name="angle-down" size={pixelY(26)} color="#696f7a" />
         </TouchableOpacity>
       </View>
-      <ScrollView>
+      <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
         {/* 轮播图 */}
         <View style={styles.block2}>
           <Swiper autoplay={true}>
@@ -133,12 +134,12 @@ const Screen = ({ navigation, home, onSave }) => {
                   color="#696f7a"
                 />
               ) : (
-                <FontAwesome
-                  name={item.iconName}
-                  size={pixelY(26)}
-                  color="#696f7a"
-                />
-              )}
+                  <FontAwesome
+                    name={item.iconName}
+                    size={pixelY(26)}
+                    color="#696f7a"
+                  />
+                )}
               <Text style={styles.block5ItemLabel}>{item.label}</Text>
             </TouchableOpacity>
           ))}
@@ -186,7 +187,7 @@ const Screen = ({ navigation, home, onSave }) => {
           </View>
         </ImageBackground>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 };
 
