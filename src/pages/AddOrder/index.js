@@ -21,11 +21,11 @@ export default function AddOrder() {
     setCatdIndex(index);
   };
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <View style={{ flex: 1 }}>
       <LinearGradient
         start={{ x: 0, y: 0 }}
         end={{ x: 0, y: 1 }}
-        locations={[0, 0.4]}
+        locations={[0, 0.5]}
         colors={['#9DC6E0', '#F5F5F5']}
         style={styles.linearGradient}
       >
@@ -227,6 +227,6 @@ export default function AddOrder() {
           </View>
         </View>
       </LinearGradient>
-    </SafeAreaView>
+    </View>
   );
 }

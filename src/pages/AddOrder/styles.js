@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { pixelX, pixelY, windowW } from '../../utils';
+import { pixelX, pixelY, windowW, isIphoneX } from '../../utils';
 
 export default StyleSheet.create({
   linearGradient: {
@@ -288,22 +288,22 @@ export default StyleSheet.create({
     marginLeft: pixelX(5),
   },
   footermg: {
-    marginBottom: pixelY(100),
+    marginBottom: pixelY(140),
   },
   payBox: {
     position: 'absolute',
     left: 0,
-    bottom: 0,
+    bottom: isIphoneX ? pixelX(25) : 0,
     width: '100%',
-    height: pixelY(60),
+    height: pixelX(60),
     justifyContent: 'center',
     alignItems: 'center',
   },
   payContent: {
     width: '90%',
-    height: pixelY(50),
+    height: pixelX(50),
     flexDirection: 'row',
-    borderRadius: pixelY(25),
+    borderRadius: pixelX(25),
     elevation: 4,
     shadowColor: '#3c3c3c',
     shadowOffset: { width: pixelX(0), height: pixelX(4) },
@@ -317,27 +317,27 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: pixelX(10),
-    borderTopLeftRadius: pixelY(25),
-    borderBottomLeftRadius: pixelY(25),
+    borderTopLeftRadius: pixelX(25),
+    borderBottomLeftRadius: pixelX(25),
   },
   payBoxLeftText1: {
     color: '#FFF',
-    fontSize: pixelX(16),
+    fontSize: pixelX(14),
   },
   payBoxLeftText2: {
     color: '#FFF',
-    fontSize: pixelX(20),
+    fontSize: pixelX(18),
   },
   payBoxRight: {
     flex: 1.2,
     backgroundColor: '#fff',
     justifyContent: 'center',
     alignItems: 'center',
-    borderTopRightRadius: pixelY(25),
-    borderBottomRightRadius: pixelY(25),
+    borderTopRightRadius: pixelX(25),
+    borderBottomRightRadius: pixelX(25),
   },
   payBoxRightText: {
     color: '#466274',
-    fontSize: pixelX(20),
+    fontSize: pixelX(18),
   },
 });
