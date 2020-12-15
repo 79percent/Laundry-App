@@ -1,101 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="chart-name" content="某国女性结婚年龄走势">
-  <title>F2 图表组件库 - AntV</title>
-  <link rel="stylesheet" href="./YmDAMEQVbLJpVbKiRQVX.css" />
-  <style>
-    html, body{
-      width: 100%;
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-    }
-    .chart-wrapper{
-      width: 100%;
-      height: 100%;
-    }
-    #mountNode{
-      width: 100%;
-      height: 100%;
-    }
-  </style>
-</head>
-
-<body>
-  <script>/*Fixing iframe window.innerHeight 0 issue in Safari*/document.body.clientHeight;</script>
-
-  <script src="./f2-all.min.js"></script>
-
-  <script src="./jquery-3.2.1.min.js"></script>
-  <!-- 在 PC 上模拟 touch 事件 -->
-  <script src="./NjNldKHIVQRozfbAOJUW.js"></script>
-
-  <div class="chart-wrapper">
-    <canvas id="mountNode"></canvas>
-  </div>
-  <script>
-    var data = [];
-    for (let i = 1; i <= 31; i++) {
-      data.push({
-        day: i,
-        value: Math.round(Math.random() * 100)
-      })
-    }
-    var chart = new F2.Chart({
-      id: 'mountNode',
-      pixelRatio: window.devicePixelRatio
-    });
-    var defs = {
-      day: {
-        min: 15,
-        max: 25,
-      },
-      value: {
-        tickCount: 10
-      },
-    };
-    chart.axis('day', {
-      label: function label(text, index, total) {
-        var cfg = {
-          textAlign: 'center'
-        };
-        if (index === 0) {
-          cfg.textAlign = 'start';
-        }
-        if (index > 0 && index === total - 1) {
-          cfg.textAlign = 'end';
-        }
-        return cfg;
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
+    <meta name="chart-name" content="某国女性结婚年龄走势" />
+    <title>F2 图表组件库 - AntV</title>
+    <!-- <link rel="stylesheet" href="./YmDAMEQVbLJpVbKiRQVX.css" /> -->
+    <link
+      rel="stylesheet"
+      href="https://gw.alipayobjects.com/os/rmsportal/YmDAMEQVbLJpVbKiRQVX.css"
+    />
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
       }
-    });
-    chart.source(data, defs);
-    chart.tooltip({
-      showCrosshairs: true,
-    });
-    // chart.guide().tag({
-    //   position: ['8', 6],
-    //   content: 6,
-    //   direct: 'tl',
-    //   offsetY: -5,
-    //   background: {
-    //     fill: '#8659AF'
-    //   },
-    //   pointStyle: {
-    //     fill: '#8659AF'
-    //   }
-    // });
-    chart.line().position('day*value').shape('smooth').color('l(0) 0:#F2C587 0.5:#ED7973 1:#8659AF');
-    chart.area().position('day*value').shape('smooth').color('l(0) 0:#F2C587 0.5:#ED7973 1:#8659AF');
-    chart.interaction('pan');
-    chart.render();
-  </script>
+      .chart-wrapper {
+        width: 100%;
+        height: 100%;
+      }
+      #mountNode {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
 
+  <body>
+    <script>
+      /*Fixing iframe window.innerHeight 0 issue in Safari*/ document.body
+        .clientHeight;
+    </script>
+    <script src="https://unpkg.com/@antv/f2@3.4.2/dist/f2-all.min.js"></script>
 
-</body>
+    <script src="https://gw.alipayobjects.com/os/antv/assets/lib/jquery-3.2.1.min.js"></script>
+    <!-- 在 PC 上模拟 touch 事件 -->
+    <script src="https://gw.alipayobjects.com/os/rmsportal/NjNldKHIVQRozfbAOJUW.js"></script>
 
+    <div class="chart-wrapper">
+      <canvas id="mountNode"></canvas>
+    </div>
+    <script>
+      // var data = [];
+      // for (let i = 1; i <= 31; i++) {
+      //   data.push({
+      //     day: i,
+      //     value: Math.round(Math.random() * 100),
+      //   });
+      // }
+      // var chart = new F2.Chart({
+      //   id: 'mountNode',
+      //   pixelRatio: window.devicePixelRatio,
+      // });
+      // var defs = {
+      //   day: {
+      //     min: 15,
+      //     max: 25,
+      //   },
+      //   value: {
+      //     tickCount: 5,
+      //   },
+      // };
+      // chart.axis('day', {
+      //   label: function label(text, index, total) {
+      //     var cfg = {
+      //       textAlign: 'center',
+      //     };
+      //     if (index === 0) {
+      //       cfg.textAlign = 'start';
+      //     }
+      //     if (index > 0 && index === total - 1) {
+      //       cfg.textAlign = 'end';
+      //     }
+      //     return cfg;
+      //   },
+      // });
+      // chart.source(data, defs);
+      // chart.tooltip({
+      //   showCrosshairs: true,
+      // });
+      // chart
+      //   .line()
+      //   .position('day*value')
+      //   .shape('smooth')
+      //   .color('l(0) 0:#F2C587 0.5:#ED7973 1:#8659AF');
+      // chart
+      //   .area()
+      //   .position('day*value')
+      //   .shape('smooth')
+      //   .color('l(0) 0:#F2C587 0.5:#ED7973 1:#8659AF');
+      // chart.interaction('pan');
+      // chart.legend({
+      //   custom: 'true',
+      //   items: [
+      //     {
+      //       name: '月订单支付',
+      //     },
+      //   ],
+      //   nameStyle: {
+      //     fill: '#000', // 文本的颜色
+      //     fontSize: 18, // 文本大小
+      //   },
+      //   align: 'left',
+      //   itemWidth: null,
+      // });
+      // chart.render();
+    </script>
+  </body>
 </html>

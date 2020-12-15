@@ -160,7 +160,7 @@ export default function OrderScreen() {
       <FlatList
         style={{ flex: 1, backgroundColor: '#EAEAEA', }}
         data={dataList}
-        keyExtractor={(item, index) => index}
+        keyExtractor={(item, index) => `${index}`}
         renderItem={renderItem}
         onRefresh={onRefresh}
         refreshing={refreshing}
